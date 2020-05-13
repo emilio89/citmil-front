@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-primary" *ngIf="isAuthenticated()">
+<nav class="navbar navbar-dark navbar-expand-md bg-primary" [ngStyle]="{ 'background-color': color }" *ngIf="isAuthenticated()">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
         <span jhiTranslate="global.title" class="navbar-title">Citmil</span> <span class="navbar-version">{{ version }}</span>
