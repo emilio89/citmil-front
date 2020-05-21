@@ -1,0 +1,114 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-type-service-heading" jhiTranslate="citmilApp.typeService.home.createOrEditLabel">Create or edit a Type Service</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.durationMinutes" for="field_durationMinutes">Duration Minutes</label>
+                    <input type="number" class="form-control" name="durationMinutes" id="field_durationMinutes"
+                           formControlName="durationMinutes"/>
+                    <div *ngIf="editForm.get('durationMinutes')!.invalid && (editForm.get('durationMinutes')!.dirty || editForm.get('durationMinutes')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('durationMinutes')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('durationMinutes')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.maxDayAppointment" for="field_maxDayAppointment">Max Day Appointment</label>
+                    <input type="number" class="form-control" name="maxDayAppointment" id="field_maxDayAppointment"
+                           formControlName="maxDayAppointment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.minDayAppointment" for="field_minDayAppointment">Min Day Appointment</label>
+                    <input type="number" class="form-control" name="minDayAppointment" id="field_minDayAppointment"
+                           formControlName="minDayAppointment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.price" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                           formControlName="price"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.icon" for="field_icon">Icon</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('iconContentType')!.value + ';base64,' + editForm.get('icon')!.value" style="max-height: 100px;" *ngIf="editForm.get('icon')!.value" alt="typeService image"/>
+                        <div *ngIf="editForm.get('icon')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('iconContentType')!.value }}, {{ byteSize(editForm.get('icon')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('icon', 'iconContentType', 'file_icon')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_icon" (change)="setFileData($event, 'icon', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="icon" id="field_icon"
+                           formControlName="icon"/>
+                    <input type="hidden" class="form-control" name="iconContentType" id="field_iconContentType"
+                           formControlName="iconContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.actived" for="field_actived">Actived</label>
+                    <input type="checkbox" class="form-control" name="actived" id="field_actived"
+                           formControlName="actived"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.typeService.company" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" formControlName="companyId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id" *ngFor="let companyOption of companies; trackBy: trackById">{{ companyOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

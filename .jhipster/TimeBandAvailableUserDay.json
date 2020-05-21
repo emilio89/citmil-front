@@ -1,0 +1,49 @@
+{
+    "name": "TimeBandAvailableUserDay",
+    "fields": [
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "start",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "calendarYearUser",
+            "otherEntityRelationshipName": "timeBandAvailableUserDay",
+            "relationshipName": "calendarYearUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "userExtra",
+            "otherEntityRelationshipName": "timeBandAvailableUserDay",
+            "relationshipName": "userExtra"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "timeBandAvailableUserDay",
+            "relationshipName": "company",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200521075200",
+    "entityTableName": "time_band_available_user_day",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

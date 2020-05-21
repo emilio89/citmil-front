@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="menuOptionsAvailable">
+            <h2><span jhiTranslate="citmilApp.menuOptionsAvailable.detail.title">Menu Options Available</span> {{ menuOptionsAvailable.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.menuOptionsAvailable.title">Title</span></dt>
+                <dd>
+                    <span>{{ menuOptionsAvailable.title }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.menuOptionsAvailable.description">Description</span></dt>
+                <dd>
+                    <span>{{ menuOptionsAvailable.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.menuOptionsAvailable.urlImg">Url Img</span></dt>
+                <dd>
+                    <div *ngIf="menuOptionsAvailable.urlImg">
+                        <a (click)="openFile(menuOptionsAvailable?.urlImgContentType!, menuOptionsAvailable?.urlImg)">
+                            <img [src]="'data:' + menuOptionsAvailable.urlImgContentType + ';base64,' + menuOptionsAvailable.urlImg" style="max-width: 100%;" alt="menuOptionsAvailable image"/>
+                        </a>
+                        {{ menuOptionsAvailable.urlImgContentType }}, {{ byteSize(menuOptionsAvailable.urlImg) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.menuOptionsAvailable.actived">Actived</span></dt>
+                <dd>
+                    <span>{{ menuOptionsAvailable.actived }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.menuOptionsAvailable.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="menuOptionsAvailable.companyId">
+                        <a [routerLink]="['/company', menuOptionsAvailable.companyId, 'view']">{{ menuOptionsAvailable.companyId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/menu-options-available', menuOptionsAvailable.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+entity UserExtra {
+  description String
+  address String maxlength(255)
+  phone String maxlength(20)
+  birthdate LocalDate
+  urlImg ImageBlob
+  actived Boolean
+  deleted Boolean
+}
+entity Company {
+	  name String required maxlength(255)
+      description String required
+      primaryColor String maxlength(10)
+      secondaryColor String maxlength(10)
+      urlImg ImageBlob
+      email String  required maxlength(150)
+  	  phone String required maxlength(10)
+      maxDayAppointment Integer
+ 	  minDayAppointment Integer
+      lat Double
+  	  lng Double
+}
+entity MenuOptionsAvailable {
+	title String
+    description String
+    urlImg ImageBlob
+    actived Boolean
+
+}
+entity DynamicContent {
+	title String
+    description String
+    urlImg ImageBlob
+    actived Boolean
+
+}
+entity TypeService {
+  name String required maxlength(200)
+  description String
+  durationMinutes Integer required
+  maxDayAppointment Integer
+  minDayAppointment Integer
+  price Double 
+  icon ImageBlob
+  actived Boolean
+  
+
+}
+entity TimeBand {
+ start Instant
+ end Instant
+ 
+}
+entity Appointment {
+  name String required maxlength(255)
+  comments String
+  email String  required maxlength(255)
+  phone String maxlength(20)
+  dni String maxlength(12)
+  start Instant
+  end Instant
+  actived Boolean
+  
+}
+entity CalendarYearUser {
+  day LocalDate 
+  year Integer 
+  isPublicHoliday Boolean
+  start Instant
+  end Instant
+}
+
+entity TimeBandAvailableUserDay {
+  year Integer 
+  start Instant
+  end Instant
+}
+
+
+entity PublicHoliday {
+  day LocalDate 
+  year Integer 
+  name String maxlength(50)
+  dni String maxlength(12)
+  
+}
+
+relationship OneToOne {
+UserExtra{user} to User
+}
+relationship OneToMany {
+UserExtra to Appointment
+
+CalendarYearUser to UserExtra
+Company to UserExtra
+Company to CalendarYearUser
+Company to Appointment
+Company to TypeService
+Company to PublicHoliday
+Company to TimeBand
+Company to DynamicContent
+Company to MenuOptionsAvailable
+Company to Appointment
+TimeBandAvailableUserDay to CalendarYearUser
+Company to TimeBandAvailableUserDay
+TimeBandAvailableUserDay to UserExtra
+
+}
+
+relationship ManyToMany {
+  UserExtra to TypeService
+  TimeBand to CalendarYearUser
+}
+
+filter Appointment, Company, TimeBand, MenuOptionsAvailable, DynamicContent
+
+paginate Appointment with pagination
+paginate UserExtra with pagination
+
+paginate TypeService with pagination
+paginate DynamicContent with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

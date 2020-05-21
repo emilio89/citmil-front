@@ -1,0 +1,143 @@
+{
+    "name": "Company",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "primaryColor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "10"
+        },
+        {
+            "fieldName": "secondaryColor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "10"
+        },
+        {
+            "fieldName": "urlImg",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "150"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "10"
+        },
+        {
+            "fieldName": "maxDayAppointment",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "minDayAppointment",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lat",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "lng",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "userExtra",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "userExtra"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "calendarYearUser",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "calendarYearUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "appointment",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "appointment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "typeService",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "typeService"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "publicHoliday",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "publicHoliday"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "timeBand",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "timeBand"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "dynamicContent",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "dynamicContent"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "menuOptionsAvailable",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "menuOptionsAvailable"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "timeBandAvailableUserDay",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "timeBandAvailableUserDay"
+        }
+    ],
+    "changelogDate": "20200521074500",
+    "entityTableName": "company",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

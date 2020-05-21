@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="citmilApp.publicHoliday.home.title">Public Holidays</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-public-holiday" [routerLink]="['/public-holiday/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="citmilApp.publicHoliday.home.createLabel">
+            Create a new Public Holiday
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="publicHolidays?.length === 0">
+        <span jhiTranslate="citmilApp.publicHoliday.home.notFound">No publicHolidays found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="publicHolidays?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.publicHoliday.day">Day</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.publicHoliday.year">Year</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.publicHoliday.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.publicHoliday.dni">Dni</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.publicHoliday.company">Company</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let publicHoliday of publicHolidays ;trackBy: trackId">
+                    <td><a [routerLink]="['/public-holiday', publicHoliday.id, 'view']">{{ publicHoliday.id }}</a></td>
+                    <td>{{ publicHoliday.day | date:'mediumDate' }}</td>
+                    <td>{{ publicHoliday.year }}</td>
+                    <td>{{ publicHoliday.name }}</td>
+                    <td>{{ publicHoliday.dni }}</td>
+                    <td>
+                        <div *ngIf="publicHoliday.companyId">
+                            <a [routerLink]="['/company', publicHoliday.companyId , 'view']" >{{ publicHoliday.companyId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/public-holiday', publicHoliday.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/public-holiday', publicHoliday.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(publicHoliday)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

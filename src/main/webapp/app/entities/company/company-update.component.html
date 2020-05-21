@@ -1,0 +1,152 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-company-heading" jhiTranslate="citmilApp.company.home.createOrEditLabel">Create or edit a Company</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.primaryColor" for="field_primaryColor">Primary Color</label>
+                    <input type="text" class="form-control" name="primaryColor" id="field_primaryColor"
+                           formControlName="primaryColor"/>
+                    <div *ngIf="editForm.get('primaryColor')!.invalid && (editForm.get('primaryColor')!.dirty || editForm.get('primaryColor')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('primaryColor')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.secondaryColor" for="field_secondaryColor">Secondary Color</label>
+                    <input type="text" class="form-control" name="secondaryColor" id="field_secondaryColor"
+                           formControlName="secondaryColor"/>
+                    <div *ngIf="editForm.get('secondaryColor')!.invalid && (editForm.get('secondaryColor')!.dirty || editForm.get('secondaryColor')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('secondaryColor')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.urlImg" for="field_urlImg">Url Img</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('urlImgContentType')!.value + ';base64,' + editForm.get('urlImg')!.value" style="max-height: 100px;" *ngIf="editForm.get('urlImg')!.value" alt="company image"/>
+                        <div *ngIf="editForm.get('urlImg')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('urlImgContentType')!.value }}, {{ byteSize(editForm.get('urlImg')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('urlImg', 'urlImgContentType', 'file_urlImg')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_urlImg" (change)="setFileData($event, 'urlImg', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="urlImg" id="field_urlImg"
+                           formControlName="urlImg"/>
+                    <input type="hidden" class="form-control" name="urlImgContentType" id="field_urlImgContentType"
+                           formControlName="urlImgContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 150 }">
+                        This field cannot be longer than 150 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                           formControlName="phone"/>
+                    <div *ngIf="editForm.get('phone')!.invalid && (editForm.get('phone')!.dirty || editForm.get('phone')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phone')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phone')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.maxDayAppointment" for="field_maxDayAppointment">Max Day Appointment</label>
+                    <input type="number" class="form-control" name="maxDayAppointment" id="field_maxDayAppointment"
+                           formControlName="maxDayAppointment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.minDayAppointment" for="field_minDayAppointment">Min Day Appointment</label>
+                    <input type="number" class="form-control" name="minDayAppointment" id="field_minDayAppointment"
+                           formControlName="minDayAppointment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.lat" for="field_lat">Lat</label>
+                    <input type="number" class="form-control" name="lat" id="field_lat"
+                           formControlName="lat"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.company.lng" for="field_lng">Lng</label>
+                    <input type="number" class="form-control" name="lng" id="field_lng"
+                           formControlName="lng"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
