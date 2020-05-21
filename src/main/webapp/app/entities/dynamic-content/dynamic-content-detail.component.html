@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dynamicContent">
+            <h2><span jhiTranslate="citmilApp.dynamicContent.detail.title">Dynamic Content</span> {{ dynamicContent.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.dynamicContent.title">Title</span></dt>
+                <dd>
+                    <span>{{ dynamicContent.title }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.dynamicContent.description">Description</span></dt>
+                <dd>
+                    <span>{{ dynamicContent.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.dynamicContent.urlImg">Url Img</span></dt>
+                <dd>
+                    <div *ngIf="dynamicContent.urlImg">
+                        <a (click)="openFile(dynamicContent?.urlImgContentType!, dynamicContent?.urlImg)">
+                            <img [src]="'data:' + dynamicContent.urlImgContentType + ';base64,' + dynamicContent.urlImg" style="max-width: 100%;" alt="dynamicContent image"/>
+                        </a>
+                        {{ dynamicContent.urlImgContentType }}, {{ byteSize(dynamicContent.urlImg) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.dynamicContent.actived">Actived</span></dt>
+                <dd>
+                    <span>{{ dynamicContent.actived }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.dynamicContent.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="dynamicContent.companyId">
+                        <a [routerLink]="['/company', dynamicContent.companyId, 'view']">{{ dynamicContent.companyId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dynamic-content', dynamicContent.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

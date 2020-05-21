@@ -1,0 +1,112 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="citmilApp.profesional.home.title">Profesionals</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-profesional" [routerLink]="['/profesional/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="citmilApp.profesional.home.createLabel">
+            Create a new Profesional
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="profesionals?.length === 0">
+        <span jhiTranslate="citmilApp.profesional.home.notFound">No profesionals found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="profesionals?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="citmilApp.profesional.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lastName"><span jhiTranslate="citmilApp.profesional.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="citmilApp.profesional.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="citmilApp.profesional.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address"><span jhiTranslate="citmilApp.profesional.address">Address</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="citmilApp.profesional.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="birthdate"><span jhiTranslate="citmilApp.profesional.birthdate">Birthdate</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="urlImg"><span jhiTranslate="citmilApp.profesional.urlImg">Url Img</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="actived"><span jhiTranslate="citmilApp.profesional.actived">Actived</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="deleted"><span jhiTranslate="citmilApp.profesional.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="calendarYearProfesionalId"><span jhiTranslate="citmilApp.profesional.calendarYearProfesional">Calendar Year Profesional</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="companyId"><span jhiTranslate="citmilApp.profesional.company">Company</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="timeBandAvailableProfesionalDayId"><span jhiTranslate="citmilApp.profesional.timeBandAvailableProfesionalDay">Time Band Available Profesional Day</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let profesional of profesionals ;trackBy: trackId">
+                    <td><a [routerLink]="['/profesional', profesional.id, 'view']">{{ profesional.id }}</a></td>
+                    <td>{{ profesional.firstName }}</td>
+                    <td>{{ profesional.lastName }}</td>
+                    <td>{{ profesional.description }}</td>
+                    <td>{{ profesional.email }}</td>
+                    <td>{{ profesional.address }}</td>
+                    <td>{{ profesional.phone }}</td>
+                    <td>{{ profesional.birthdate | date:'mediumDate' }}</td>
+                    <td>
+                        <a *ngIf="profesional.urlImg" (click)="openFile(profesional.urlImgContentType, profesional.urlImg)">
+                            <img [src]="'data:' + profesional.urlImgContentType + ';base64,' + profesional.urlImg" style="max-height: 30px;" alt="profesional image"/>
+                        </a>
+                        <span *ngIf="profesional.urlImg">{{ profesional.urlImgContentType }}, {{ byteSize(profesional.urlImg) }}</span>
+                    </td>
+                    <td>{{ profesional.actived }}</td>
+                    <td>{{ profesional.deleted }}</td>
+                    <td>
+                        <div *ngIf="profesional.calendarYearProfesionalId">
+                            <a [routerLink]="['/calendar-year-profesional', profesional.calendarYearProfesionalId , 'view']" >{{ profesional.calendarYearProfesionalId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="profesional.companyId">
+                            <a [routerLink]="['/company', profesional.companyId , 'view']" >{{ profesional.companyId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="profesional.timeBandAvailableProfesionalDayId">
+                            <a [routerLink]="['/time-band-available-profesional-day', profesional.timeBandAvailableProfesionalDayId , 'view']" >{{ profesional.timeBandAvailableProfesionalDayId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/profesional', profesional.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/profesional', profesional.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(profesional)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="profesionals?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

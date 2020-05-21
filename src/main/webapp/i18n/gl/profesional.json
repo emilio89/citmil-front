@@ -1,0 +1,36 @@
+{
+  "citmilApp": {
+    "profesional": {
+      "home": {
+        "title": "Profesionals",
+        "createLabel": "Crear novo Profesional",
+        "createOrEditLabel": "Crear ou editar Profesional",
+        "notFound": "No Profesionals found"
+      },
+      "created": "Un novo Profesional foi creado co identificador {{ param }}",
+      "updated": "Un Profesional foi actualizado co identificador {{ param }}",
+      "deleted": "Un Profesional foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Profesional {{ id }}?"
+      },
+      "detail": {
+        "title": "Profesional"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "description": "Description",
+      "email": "Email",
+      "address": "Address",
+      "phone": "Phone",
+      "birthdate": "Birthdate",
+      "urlImg": "Url Img",
+      "actived": "Actived",
+      "deleted": "Deleted",
+      "appointment": "Appointment",
+      "typeService": "Type Service",
+      "calendarYearProfesional": "Calendar Year Profesional",
+      "company": "Company",
+      "timeBandAvailableProfesionalDay": "Time Band Available Profesional Day"
+    }
+  }
+}

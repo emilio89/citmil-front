@@ -1,0 +1,66 @@
+{
+    "name": "CalendarYearProfesional",
+    "fields": [
+        {
+            "fieldName": "day",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "isPublicHoliday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "start",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "profesional",
+            "otherEntityRelationshipName": "calendarYearProfesional",
+            "relationshipName": "profesional"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "calendarYearProfesional",
+            "relationshipName": "company",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "timeBandAvailableProfesionalDay",
+            "otherEntityRelationshipName": "calendarYearProfesional",
+            "relationshipName": "timeBandAvailableProfesionalDay",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "timeBand",
+            "otherEntityRelationshipName": "calendarYearProfesional",
+            "relationshipName": "timeBand",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200519104700",
+    "entityTableName": "calendar_year_profesional",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

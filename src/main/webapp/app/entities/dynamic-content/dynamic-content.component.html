@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="citmilApp.dynamicContent.home.title">Dynamic Contents</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-dynamic-content" [routerLink]="['/dynamic-content/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="citmilApp.dynamicContent.home.createLabel">
+            Create a new Dynamic Content
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="dynamicContents?.length === 0">
+        <span jhiTranslate="citmilApp.dynamicContent.home.notFound">No dynamicContents found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="dynamicContents?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="title"><span jhiTranslate="citmilApp.dynamicContent.title">Title</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="citmilApp.dynamicContent.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="urlImg"><span jhiTranslate="citmilApp.dynamicContent.urlImg">Url Img</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="actived"><span jhiTranslate="citmilApp.dynamicContent.actived">Actived</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="companyId"><span jhiTranslate="citmilApp.dynamicContent.company">Company</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dynamicContent of dynamicContents ;trackBy: trackId">
+                    <td><a [routerLink]="['/dynamic-content', dynamicContent.id, 'view']">{{ dynamicContent.id }}</a></td>
+                    <td>{{ dynamicContent.title }}</td>
+                    <td>{{ dynamicContent.description }}</td>
+                    <td>
+                        <a *ngIf="dynamicContent.urlImg" (click)="openFile(dynamicContent.urlImgContentType, dynamicContent.urlImg)">
+                            <img [src]="'data:' + dynamicContent.urlImgContentType + ';base64,' + dynamicContent.urlImg" style="max-height: 30px;" alt="dynamicContent image"/>
+                        </a>
+                        <span *ngIf="dynamicContent.urlImg">{{ dynamicContent.urlImgContentType }}, {{ byteSize(dynamicContent.urlImg) }}</span>
+                    </td>
+                    <td>{{ dynamicContent.actived }}</td>
+                    <td>
+                        <div *ngIf="dynamicContent.companyId">
+                            <a [routerLink]="['/company', dynamicContent.companyId , 'view']" >{{ dynamicContent.companyId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/dynamic-content', dynamicContent.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/dynamic-content', dynamicContent.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(dynamicContent)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="dynamicContents?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

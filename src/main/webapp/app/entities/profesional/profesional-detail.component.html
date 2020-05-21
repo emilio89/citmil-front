@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="profesional">
+            <h2><span jhiTranslate="citmilApp.profesional.detail.title">Profesional</span> {{ profesional.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.profesional.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{ profesional.firstName }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{ profesional.lastName }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.description">Description</span></dt>
+                <dd>
+                    <span>{{ profesional.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.email">Email</span></dt>
+                <dd>
+                    <span>{{ profesional.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.address">Address</span></dt>
+                <dd>
+                    <span>{{ profesional.address }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ profesional.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.birthdate">Birthdate</span></dt>
+                <dd>
+                    <span>{{ profesional.birthdate }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.urlImg">Url Img</span></dt>
+                <dd>
+                    <div *ngIf="profesional.urlImg">
+                        <a (click)="openFile(profesional?.urlImgContentType!, profesional?.urlImg)">
+                            <img [src]="'data:' + profesional.urlImgContentType + ';base64,' + profesional.urlImg" style="max-width: 100%;" alt="profesional image"/>
+                        </a>
+                        {{ profesional.urlImgContentType }}, {{ byteSize(profesional.urlImg) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.actived">Actived</span></dt>
+                <dd>
+                    <span>{{ profesional.actived }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ profesional.deleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.typeService">Type Service</span></dt>
+                <dd>
+                    <span *ngFor="let typeService of profesional.typeServices; let last = last">
+                        <a [routerLink]="['/type-service', typeService?.id, 'view']">{{ typeService.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.calendarYearProfesional">Calendar Year Profesional</span></dt>
+                <dd>
+                    <div *ngIf="profesional.calendarYearProfesionalId">
+                        <a [routerLink]="['/calendar-year-profesional', profesional.calendarYearProfesionalId, 'view']">{{ profesional.calendarYearProfesionalId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="profesional.companyId">
+                        <a [routerLink]="['/company', profesional.companyId, 'view']">{{ profesional.companyId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.profesional.timeBandAvailableProfesionalDay">Time Band Available Profesional Day</span></dt>
+                <dd>
+                    <div *ngIf="profesional.timeBandAvailableProfesionalDayId">
+                        <a [routerLink]="['/time-band-available-profesional-day', profesional.timeBandAvailableProfesionalDayId, 'view']">{{ profesional.timeBandAvailableProfesionalDayId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/profesional', profesional.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="calendarYearProfesional">
+            <h2><span jhiTranslate="citmilApp.calendarYearProfesional.detail.title">Calendar Year Profesional</span> {{ calendarYearProfesional.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.calendarYearProfesional.day">Day</span></dt>
+                <dd>
+                    <span>{{ calendarYearProfesional.day }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearProfesional.year">Year</span></dt>
+                <dd>
+                    <span>{{ calendarYearProfesional.year }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearProfesional.isPublicHoliday">Is Public Holiday</span></dt>
+                <dd>
+                    <span>{{ calendarYearProfesional.isPublicHoliday }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearProfesional.start">Start</span></dt>
+                <dd>
+                    <span>{{ calendarYearProfesional.start }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearProfesional.end">End</span></dt>
+                <dd>
+                    <span>{{ calendarYearProfesional.end }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearProfesional.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="calendarYearProfesional.companyId">
+                        <a [routerLink]="['/company', calendarYearProfesional.companyId, 'view']">{{ calendarYearProfesional.companyId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearProfesional.timeBandAvailableProfesionalDay">Time Band Available Profesional Day</span></dt>
+                <dd>
+                    <div *ngIf="calendarYearProfesional.timeBandAvailableProfesionalDayId">
+                        <a [routerLink]="['/time-band-available-profesional-day', calendarYearProfesional.timeBandAvailableProfesionalDayId, 'view']">{{ calendarYearProfesional.timeBandAvailableProfesionalDayId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/calendar-year-profesional', calendarYearProfesional.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "citmilApp": {
+    "timeBandAvailableProfesionalDay": {
+      "home": {
+        "title": "TimeBandAvailableProfesionalDays",
+        "createLabel": "Crear novo Time Band Available Profesional Day",
+        "createOrEditLabel": "Crear ou editar Time Band Available Profesional Day",
+        "notFound": "No Time Band Available Profesional Days found"
+      },
+      "created": "Un novo Time Band Available Profesional Day foi creado co identificador {{ param }}",
+      "updated": "Un Time Band Available Profesional Day foi actualizado co identificador {{ param }}",
+      "deleted": "Un Time Band Available Profesional Day foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Time Band Available Profesional Day {{ id }}?"
+      },
+      "detail": {
+        "title": "Time Band Available Profesional Day"
+      },
+      "year": "Year",
+      "start": "Start",
+      "end": "End",
+      "calendarYearProfesional": "Calendar Year Profesional",
+      "profesional": "Profesional",
+      "company": "Company"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "citmilApp": {
+    "publicHoliday": {
+      "home": {
+        "title": "Public Holidays",
+        "createLabel": "Crear nuevo Public Holiday",
+        "createOrEditLabel": "Crear o editar Public Holiday",
+        "notFound": "Ningún Public Holidays encontrado"
+      },
+      "created": "Un nuevo Public Holiday ha sido creado con el identificador {{ param }}",
+      "updated": "Un Public Holiday ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Public Holiday ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Public Holiday {{ id }}?"
+      },
+      "detail": {
+        "title": "Public Holiday"
+      },
+      "day": "Day",
+      "year": "Year",
+      "name": "Name",
+      "dni": "Dni",
+      "company": "Company"
+    }
+  }
+}

@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "profesional": "Profesional",
+        "company": "Company",
+        "menuOptionsAvailable": "Menu Options Available",
+        "dynamicContent": "Dynamic Content",
+        "typeService": "Type Service",
+        "timeBand": "Time Band",
+        "appointment": "Appointment",
+        "calendarYearProfesional": "Calendar Year Profesional",
+        "timeBandAvailableProfesionalDay": "Time Band Available Profesional Day",
+        "publicHoliday": "Public Holiday",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

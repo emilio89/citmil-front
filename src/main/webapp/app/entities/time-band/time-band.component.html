@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="citmilApp.timeBand.home.title">Time Bands</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-time-band" [routerLink]="['/time-band/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="citmilApp.timeBand.home.createLabel">
+            Create a new Time Band
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="timeBands?.length === 0">
+        <span jhiTranslate="citmilApp.timeBand.home.notFound">No timeBands found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="timeBands?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.timeBand.start">Start</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.timeBand.end">End</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.timeBand.calendarYearProfesional">Calendar Year Profesional</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.timeBand.company">Company</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let timeBand of timeBands ;trackBy: trackId">
+                    <td><a [routerLink]="['/time-band', timeBand.id, 'view']">{{ timeBand.id }}</a></td>
+                    <td>{{ timeBand.start | date:'medium' }}</td>
+                    <td>{{ timeBand.end | date:'medium' }}</td>
+                    <td>
+                        <span *ngFor="let calendarYearProfesional of timeBand.calendarYearProfesionals; let last = last">
+                            <a class="form-control-static" [routerLink]="['/calendar-year-profesional', calendarYearProfesional?.id, 'view']">{{ calendarYearProfesional.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div *ngIf="timeBand.companyId">
+                            <a [routerLink]="['/company', timeBand.companyId , 'view']" >{{ timeBand.companyId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/time-band', timeBand.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/time-band', timeBand.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(timeBand)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

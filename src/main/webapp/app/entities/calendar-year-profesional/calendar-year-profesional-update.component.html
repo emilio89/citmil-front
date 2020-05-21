@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-calendar-year-profesional-heading" jhiTranslate="citmilApp.calendarYearProfesional.home.createOrEditLabel">Create or edit a Calendar Year Profesional</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.calendarYearProfesional.day" for="field_day">Day</label>
+                    <div class="input-group">
+                        <input id="field_day" type="text" class="form-control" name="day" ngbDatepicker #dayDp="ngbDatepicker" formControlName="day"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dayDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.calendarYearProfesional.year" for="field_year">Year</label>
+                    <input type="number" class="form-control" name="year" id="field_year"
+                           formControlName="year"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.calendarYearProfesional.isPublicHoliday" for="field_isPublicHoliday">Is Public Holiday</label>
+                    <input type="checkbox" class="form-control" name="isPublicHoliday" id="field_isPublicHoliday"
+                           formControlName="isPublicHoliday"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.calendarYearProfesional.start" for="field_start">Start</label>
+                    <div class="d-flex">
+                        <input id="field_start" type="datetime-local" class="form-control" name="start" formControlName="start" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.calendarYearProfesional.end" for="field_end">End</label>
+                    <div class="d-flex">
+                        <input id="field_end" type="datetime-local" class="form-control" name="end" formControlName="end" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.calendarYearProfesional.company" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" formControlName="companyId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id" *ngFor="let companyOption of companies; trackBy: trackById">{{ companyOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.calendarYearProfesional.timeBandAvailableProfesionalDay" for="field_timeBandAvailableProfesionalDay">Time Band Available Profesional Day</label>
+                    <select class="form-control" id="field_timeBandAvailableProfesionalDay" name="timeBandAvailableProfesionalDay" formControlName="timeBandAvailableProfesionalDayId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="timeBandAvailableProfesionalDayOption.id" *ngFor="let timeBandAvailableProfesionalDayOption of timebandavailableprofesionaldays; trackBy: trackById">{{ timeBandAvailableProfesionalDayOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

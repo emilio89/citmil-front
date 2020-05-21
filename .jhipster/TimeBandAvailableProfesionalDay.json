@@ -1,0 +1,49 @@
+{
+    "name": "TimeBandAvailableProfesionalDay",
+    "fields": [
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "start",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "calendarYearProfesional",
+            "otherEntityRelationshipName": "timeBandAvailableProfesionalDay",
+            "relationshipName": "calendarYearProfesional"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "profesional",
+            "otherEntityRelationshipName": "timeBandAvailableProfesionalDay",
+            "relationshipName": "profesional"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "timeBandAvailableProfesionalDay",
+            "relationshipName": "company",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200519104800",
+    "entityTableName": "time_band_available_profesional_day",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

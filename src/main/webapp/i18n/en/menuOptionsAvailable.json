@@ -1,0 +1,26 @@
+{
+  "citmilApp": {
+    "menuOptionsAvailable": {
+      "home": {
+        "title": "Menu Options Availables",
+        "createLabel": "Create a new Menu Options Available",
+        "createOrEditLabel": "Create or edit a Menu Options Available",
+        "notFound": "No Menu Options Availables found"
+      },
+      "created": "A new Menu Options Available is created with identifier {{ param }}",
+      "updated": "A Menu Options Available is updated with identifier {{ param }}",
+      "deleted": "A Menu Options Available is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Menu Options Available {{ id }}?"
+      },
+      "detail": {
+        "title": "Menu Options Available"
+      },
+      "title": "Title",
+      "description": "Description",
+      "urlImg": "Url Img",
+      "actived": "Actived",
+      "company": "Company"
+    }
+  }
+}

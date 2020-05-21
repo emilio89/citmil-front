@@ -1,0 +1,30 @@
+{
+  "citmilApp": {
+    "calendarYearProfesional": {
+      "home": {
+        "title": "Calendar Year Profesionals",
+        "createLabel": "Create a new Calendar Year Profesional",
+        "createOrEditLabel": "Create or edit a Calendar Year Profesional",
+        "notFound": "No Calendar Year Profesionals found"
+      },
+      "created": "A new Calendar Year Profesional is created with identifier {{ param }}",
+      "updated": "A Calendar Year Profesional is updated with identifier {{ param }}",
+      "deleted": "A Calendar Year Profesional is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Calendar Year Profesional {{ id }}?"
+      },
+      "detail": {
+        "title": "Calendar Year Profesional"
+      },
+      "day": "Day",
+      "year": "Year",
+      "isPublicHoliday": "Is Public Holiday",
+      "start": "Start",
+      "end": "End",
+      "profesional": "Profesional",
+      "company": "Company",
+      "timeBandAvailableProfesionalDay": "Time Band Available Profesional Day",
+      "timeBand": "Time Band"
+    }
+  }
+}
