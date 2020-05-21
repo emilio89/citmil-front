@@ -8,15 +8,15 @@
       "entities": {
         "main": "Entidades",
         "userExtra": "User Extra",
-        "company": "Company",
-        "menuOptionsAvailable": "Menu Options Available",
-        "dynamicContent": "Dynamic Content",
+        "company": "Empresa",
+        "menuOptionsAvailable": "Opcións de menú dispoñibles",
+        "dynamicContent": "Conteñido dinámico",
         "typeService": "Tipos de servizo",
-        "timeBand": "Time Band",
-        "appointment": "Appointment",
-        "calendarYearUser": "Calendar Year User",
-        "timeBandAvailableUserDay": "Time Band Available User Day",
-        "publicHoliday": "Public Holiday",
+        "timeBand": "Franxa horaria",
+        "appointment": "Listado de citas",
+        "calendarYearUser": "Calendario anual do usuario",
+        "timeBandAvailableUserDay": "Franxa horaria dispoñible por usuario",
+        "publicHoliday": "Vacacións",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -46,8 +46,8 @@
     "form": {
       "username.label": "Usuario",
       "username.placeholder": "Seu usuario",
-      "currentpassword.label": "Current password",
-      "currentpassword.placeholder": "Current password",
+      "currentpassword.label": "Contrasinal actual",
+      "currentpassword.placeholder": "Contrasinal actual",
       "newpassword.label": "Novo contrasinal",
       "newpassword.placeholder": "Novo contrasinal",
       "confirmpassword.label": "Confirmación do novo contrasinal",
@@ -94,7 +94,7 @@
       "id": "ID"
     },
     "ribbon": {
-      "dev": "Development"
+      "dev": "Desarrollo"
     },
     "item-count": "Mostrando {{first}} - {{second}} de {{total}} elementos."
   },
@@ -106,7 +106,7 @@
       "cancel": "Cancelar",
       "delete": "Eliminar",
       "edit": "Editar",
-      "open": "Open",
+      "open": "Abrr",
       "save": "Gardar",
       "view": "Vista"
     },

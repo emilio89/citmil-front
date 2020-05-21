@@ -3,7 +3,7 @@
         <div *ngIf="appointment">
             <h2><span jhiTranslate="citmilApp.appointment.detail.title">Appointment</span> {{ appointment.id }}</h2>
 
-            <hr>
+            <hr />
 
             <jhi-alert-error></jhi-alert-error>
 
@@ -40,29 +40,13 @@
                 <dd>
                     <span>{{ appointment.actived }}</span>
                 </dd>
-                <dt><span jhiTranslate="citmilApp.appointment.userExtra">User Extra</span></dt>
-                <dd>
-                    <div *ngIf="appointment.userExtraId">
-                        <a [routerLink]="['/user-extra', appointment.userExtraId, 'view']">{{ appointment.userExtraId }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="citmilApp.appointment.company">Company</span></dt>
-                <dd>
-                    <div *ngIf="appointment.companyId">
-                        <a [routerLink]="['/company', appointment.companyId, 'view']">{{ appointment.companyId }}</a>
-                    </div>
-                </dd>
             </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
+            <button type="submit" (click)="previousState()" class="btn btn-info">
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/appointment', appointment.id, 'edit']"
-                    class="btn btn-primary">
+            <button type="button" [routerLink]="['/appointment', appointment.id, 'edit']" class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>

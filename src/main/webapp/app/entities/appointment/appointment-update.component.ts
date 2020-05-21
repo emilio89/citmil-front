@@ -9,12 +9,7 @@ import { DATE_TIME_FORMAT } from "app/shared/constants/input.constants"
 
 import { IAppointment, Appointment } from "app/shared/model/appointment.model"
 import { AppointmentService } from "./appointment.service"
-import { IUserExtra } from "app/shared/model/user-extra.model"
 import { UserExtraService } from "app/entities/user-extra/user-extra.service"
-import { ICompany } from "app/shared/model/company.model"
-import { CompanyService } from "app/entities/company/company.service"
-
-type SelectableEntity = IUserExtra | ICompany
 
 @Component({
   selector: "jhi-appointment-update",
@@ -22,8 +17,6 @@ type SelectableEntity = IUserExtra | ICompany
 })
 export class AppointmentUpdateComponent implements OnInit {
   isSaving = false
-  userextras: IUserExtra[] = []
-  companies: ICompany[] = []
 
   editForm = this.fb.group({
     id: [],
@@ -34,18 +27,10 @@ export class AppointmentUpdateComponent implements OnInit {
     dni: [null, [Validators.maxLength(12)]],
     start: [],
     end: [],
-    actived: [],
-    userExtraId: [],
-    companyId: []
+    actived: []
   })
 
-  constructor(
-    protected appointmentService: AppointmentService,
-    protected userExtraService: UserExtraService,
-    protected companyService: CompanyService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected appointmentService: AppointmentService, protected userExtraService: UserExtraService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ appointment }) => {
@@ -56,10 +41,6 @@ export class AppointmentUpdateComponent implements OnInit {
       }
 
       this.updateForm(appointment)
-
-      this.userExtraService.query().subscribe((res: HttpResponse<IUserExtra[]>) => (this.userextras = res.body || []))
-
-      this.companyService.query().subscribe((res: HttpResponse<ICompany[]>) => (this.companies = res.body || []))
     })
   }
 
@@ -73,9 +54,7 @@ export class AppointmentUpdateComponent implements OnInit {
       dni: appointment.dni,
       start: appointment.start ? appointment.start.format(DATE_TIME_FORMAT) : null,
       end: appointment.end ? appointment.end.format(DATE_TIME_FORMAT) : null,
-      actived: appointment.actived,
-      userExtraId: appointment.userExtraId,
-      companyId: appointment.companyId
+      actived: appointment.actived
     })
   }
 
@@ -104,9 +83,7 @@ export class AppointmentUpdateComponent implements OnInit {
       dni: this.editForm.get(["dni"])!.value,
       start: this.editForm.get(["start"])!.value ? moment(this.editForm.get(["start"])!.value, DATE_TIME_FORMAT) : undefined,
       end: this.editForm.get(["end"])!.value ? moment(this.editForm.get(["end"])!.value, DATE_TIME_FORMAT) : undefined,
-      actived: this.editForm.get(["actived"])!.value,
-      userExtraId: this.editForm.get(["userExtraId"])!.value,
-      companyId: this.editForm.get(["companyId"])!.value
+      actived: this.editForm.get(["actived"])!.value
     }
   }
 
@@ -124,9 +101,5 @@ export class AppointmentUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false
-  }
-
-  trackById(index: number, item: SelectableEntity): any {
-    return item.id
   }
 }

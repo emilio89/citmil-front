@@ -8,15 +8,15 @@
       "entities": {
         "main": "Entidades",
         "userExtra": "User Extra",
-        "company": "Company",
-        "menuOptionsAvailable": "Menu Options Available",
-        "dynamicContent": "Dynamic Content",
+        "company": "Empresa",
+        "menuOptionsAvailable": "Opciones de menú disponibles",
+        "dynamicContent": "Contenido dinámico",
         "typeService": "Tipos de servicio",
-        "timeBand": "Time Band",
-        "appointment": "Appointment",
-        "calendarYearUser": "Calendar Year User",
-        "timeBandAvailableUserDay": "Time Band Available User Day",
-        "publicHoliday": "Public Holiday",
+        "timeBand": "Franja horaria",
+        "appointment": "Listado de citas",
+        "calendarYearUser": "Calendario anual de usuario",
+        "timeBandAvailableUserDay": "Franja horaria disponible de usuario",
+        "publicHoliday": "Vacaciones",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

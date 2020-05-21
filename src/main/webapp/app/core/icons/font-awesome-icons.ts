@@ -34,7 +34,9 @@ import {
   faTasks,
   faHome,
   faFolder,
-  faFolderOpen
+  faFolderOpen,
+  faCalendarCheck,
+  faListAlt
   // jhipster-needle-add-icon-import
 } from "@fortawesome/free-solid-svg-icons"
 
@@ -74,6 +76,8 @@ export const fontAwesomeIcons = [
   faTrashAlt,
   faAsterisk,
   faFolder,
-  faFolderOpen
+  faFolderOpen,
+  faCalendarCheck,
+  faListAlt
   // jhipster-needle-add-icon-import
 ]
