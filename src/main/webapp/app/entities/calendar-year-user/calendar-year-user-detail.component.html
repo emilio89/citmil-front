@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="calendarYearUser">
+            <h2><span jhiTranslate="citmilApp.calendarYearUser.detail.title">Calendar Year User</span> {{ calendarYearUser.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.calendarYearUser.day">Day</span></dt>
+                <dd>
+                    <span>{{ calendarYearUser.day }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearUser.year">Year</span></dt>
+                <dd>
+                    <span>{{ calendarYearUser.year }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearUser.isPublicHoliday">Is Public Holiday</span></dt>
+                <dd>
+                    <span>{{ calendarYearUser.isPublicHoliday }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearUser.start">Start</span></dt>
+                <dd>
+                    <span>{{ calendarYearUser.start }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearUser.end">End</span></dt>
+                <dd>
+                    <span>{{ calendarYearUser.end }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearUser.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="calendarYearUser.companyId">
+                        <a [routerLink]="['/company', calendarYearUser.companyId, 'view']">{{ calendarYearUser.companyId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.calendarYearUser.timeBandAvailableUserDay">Time Band Available User Day</span></dt>
+                <dd>
+                    <div *ngIf="calendarYearUser.timeBandAvailableUserDayId">
+                        <a [routerLink]="['/time-band-available-user-day', calendarYearUser.timeBandAvailableUserDayId, 'view']">{{ calendarYearUser.timeBandAvailableUserDayId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/calendar-year-user', calendarYearUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

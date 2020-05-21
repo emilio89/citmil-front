@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="citmilApp.menuOptionsAvailable.home.title">Menu Options Availables</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-menu-options-available" [routerLink]="['/menu-options-available/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="citmilApp.menuOptionsAvailable.home.createLabel">
+            Create a new Menu Options Available
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="menuOptionsAvailables?.length === 0">
+        <span jhiTranslate="citmilApp.menuOptionsAvailable.home.notFound">No menuOptionsAvailables found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="menuOptionsAvailables?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.menuOptionsAvailable.title">Title</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.menuOptionsAvailable.description">Description</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.menuOptionsAvailable.urlImg">Url Img</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.menuOptionsAvailable.actived">Actived</span></th>
+                    <th scope="col" ><span jhiTranslate="citmilApp.menuOptionsAvailable.company">Company</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let menuOptionsAvailable of menuOptionsAvailables ;trackBy: trackId">
+                    <td><a [routerLink]="['/menu-options-available', menuOptionsAvailable.id, 'view']">{{ menuOptionsAvailable.id }}</a></td>
+                    <td>{{ menuOptionsAvailable.title }}</td>
+                    <td>{{ menuOptionsAvailable.description }}</td>
+                    <td>
+                        <a *ngIf="menuOptionsAvailable.urlImg" (click)="openFile(menuOptionsAvailable.urlImgContentType, menuOptionsAvailable.urlImg)">
+                            <img [src]="'data:' + menuOptionsAvailable.urlImgContentType + ';base64,' + menuOptionsAvailable.urlImg" style="max-height: 30px;" alt="menuOptionsAvailable image"/>
+                        </a>
+                        <span *ngIf="menuOptionsAvailable.urlImg">{{ menuOptionsAvailable.urlImgContentType }}, {{ byteSize(menuOptionsAvailable.urlImg) }}</span>
+                    </td>
+                    <td>{{ menuOptionsAvailable.actived }}</td>
+                    <td>
+                        <div *ngIf="menuOptionsAvailable.companyId">
+                            <a [routerLink]="['/company', menuOptionsAvailable.companyId , 'view']" >{{ menuOptionsAvailable.companyId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/menu-options-available', menuOptionsAvailable.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/menu-options-available', menuOptionsAvailable.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(menuOptionsAvailable)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

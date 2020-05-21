@@ -1,0 +1,27 @@
+{
+  "citmilApp": {
+    "timeBandAvailableUserDay": {
+      "home": {
+        "title": "TimeBandAvailableUserDays",
+        "createLabel": "Crear novo Time Band Available User Day",
+        "createOrEditLabel": "Crear ou editar Time Band Available User Day",
+        "notFound": "No Time Band Available User Days found"
+      },
+      "created": "Un novo Time Band Available User Day foi creado co identificador {{ param }}",
+      "updated": "Un Time Band Available User Day foi actualizado co identificador {{ param }}",
+      "deleted": "Un Time Band Available User Day foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Time Band Available User Day {{ id }}?"
+      },
+      "detail": {
+        "title": "Time Band Available User Day"
+      },
+      "year": "Year",
+      "start": "Start",
+      "end": "End",
+      "calendarYearUser": "Calendar Year User",
+      "userExtra": "User Extra",
+      "company": "Company"
+    }
+  }
+}

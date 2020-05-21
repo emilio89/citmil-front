@@ -1,0 +1,34 @@
+{
+  "citmilApp": {
+    "userExtra": {
+      "home": {
+        "title": "UserExtras",
+        "createLabel": "Crear novo User Extra",
+        "createOrEditLabel": "Crear ou editar User Extra",
+        "notFound": "No User Extras found"
+      },
+      "created": "Un novo User Extra foi creado co identificador {{ param }}",
+      "updated": "Un User Extra foi actualizado co identificador {{ param }}",
+      "deleted": "Un User Extra foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar User Extra {{ id }}?"
+      },
+      "detail": {
+        "title": "User Extra"
+      },
+      "description": "Description",
+      "address": "Address",
+      "phone": "Phone",
+      "birthdate": "Birthdate",
+      "urlImg": "Url Img",
+      "actived": "Actived",
+      "deleted": "Deleted",
+      "user": "User",
+      "appointment": "Appointment",
+      "typeService": "Type Service",
+      "calendarYearUser": "Calendar Year User",
+      "company": "Company",
+      "timeBandAvailableUserDay": "Time Band Available User Day"
+    }
+  }
+}

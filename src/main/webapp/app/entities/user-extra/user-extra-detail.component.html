@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userExtra">
+            <h2><span jhiTranslate="citmilApp.userExtra.detail.title">User Extra</span> {{ userExtra.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.userExtra.description">Description</span></dt>
+                <dd>
+                    <span>{{ userExtra.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.address">Address</span></dt>
+                <dd>
+                    <span>{{ userExtra.address }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ userExtra.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.birthdate">Birthdate</span></dt>
+                <dd>
+                    <span>{{ userExtra.birthdate }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.urlImg">Url Img</span></dt>
+                <dd>
+                    <div *ngIf="userExtra.urlImg">
+                        <a (click)="openFile(userExtra?.urlImgContentType!, userExtra?.urlImg)">
+                            <img [src]="'data:' + userExtra.urlImgContentType + ';base64,' + userExtra.urlImg" style="max-width: 100%;" alt="userExtra image"/>
+                        </a>
+                        {{ userExtra.urlImgContentType }}, {{ byteSize(userExtra.urlImg) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.actived">Actived</span></dt>
+                <dd>
+                    <span>{{ userExtra.actived }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ userExtra.deleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.user">User</span></dt>
+                <dd>
+                    {{ userExtra.userId }}
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.typeService">Type Service</span></dt>
+                <dd>
+                    <span *ngFor="let typeService of userExtra.typeServices; let last = last">
+                        <a [routerLink]="['/type-service', typeService?.id, 'view']">{{ typeService.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.calendarYearUser">Calendar Year User</span></dt>
+                <dd>
+                    <div *ngIf="userExtra.calendarYearUserId">
+                        <a [routerLink]="['/calendar-year-user', userExtra.calendarYearUserId, 'view']">{{ userExtra.calendarYearUserId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="userExtra.companyId">
+                        <a [routerLink]="['/company', userExtra.companyId, 'view']">{{ userExtra.companyId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.userExtra.timeBandAvailableUserDay">Time Band Available User Day</span></dt>
+                <dd>
+                    <div *ngIf="userExtra.timeBandAvailableUserDayId">
+                        <a [routerLink]="['/time-band-available-user-day', userExtra.timeBandAvailableUserDayId, 'view']">{{ userExtra.timeBandAvailableUserDayId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-extra', userExtra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

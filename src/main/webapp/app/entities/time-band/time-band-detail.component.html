@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="timeBand">
+            <h2><span jhiTranslate="citmilApp.timeBand.detail.title">Time Band</span> {{ timeBand.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.timeBand.start">Start</span></dt>
+                <dd>
+                    <span>{{ timeBand.start }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.timeBand.end">End</span></dt>
+                <dd>
+                    <span>{{ timeBand.end }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.timeBand.calendarYearUser">Calendar Year User</span></dt>
+                <dd>
+                    <span *ngFor="let calendarYearUser of timeBand.calendarYearUsers; let last = last">
+                        <a [routerLink]="['/calendar-year-user', calendarYearUser?.id, 'view']">{{ calendarYearUser.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.timeBand.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="timeBand.companyId">
+                        <a [routerLink]="['/company', timeBand.companyId, 'view']">{{ timeBand.companyId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/time-band', timeBand.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

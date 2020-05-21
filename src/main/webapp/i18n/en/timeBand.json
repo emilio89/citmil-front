@@ -1,0 +1,25 @@
+{
+  "citmilApp": {
+    "timeBand": {
+      "home": {
+        "title": "Time Bands",
+        "createLabel": "Create a new Time Band",
+        "createOrEditLabel": "Create or edit a Time Band",
+        "notFound": "No Time Bands found"
+      },
+      "created": "A new Time Band is created with identifier {{ param }}",
+      "updated": "A Time Band is updated with identifier {{ param }}",
+      "deleted": "A Time Band is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Time Band {{ id }}?"
+      },
+      "detail": {
+        "title": "Time Band"
+      },
+      "start": "Start",
+      "end": "End",
+      "calendarYearUser": "Calendar Year User",
+      "company": "Company"
+    }
+  }
+}

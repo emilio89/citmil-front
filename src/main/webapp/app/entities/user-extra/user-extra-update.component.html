@@ -1,0 +1,135 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-user-extra-heading" jhiTranslate="citmilApp.userExtra.home.createOrEditLabel">Create or edit a User Extra</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.address" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                           formControlName="address"/>
+                    <div *ngIf="editForm.get('address')!.invalid && (editForm.get('address')!.dirty || editForm.get('address')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('address')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                           formControlName="phone"/>
+                    <div *ngIf="editForm.get('phone')!.invalid && (editForm.get('phone')!.dirty || editForm.get('phone')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phone')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.birthdate" for="field_birthdate">Birthdate</label>
+                    <div class="input-group">
+                        <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker #birthdateDp="ngbDatepicker" formControlName="birthdate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthdateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.urlImg" for="field_urlImg">Url Img</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('urlImgContentType')!.value + ';base64,' + editForm.get('urlImg')!.value" style="max-height: 100px;" *ngIf="editForm.get('urlImg')!.value" alt="userExtra image"/>
+                        <div *ngIf="editForm.get('urlImg')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('urlImgContentType')!.value }}, {{ byteSize(editForm.get('urlImg')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('urlImg', 'urlImgContentType', 'file_urlImg')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_urlImg" (change)="setFileData($event, 'urlImg', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="urlImg" id="field_urlImg"
+                           formControlName="urlImg"/>
+                    <input type="hidden" class="form-control" name="urlImgContentType" id="field_urlImgContentType"
+                           formControlName="urlImgContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.actived" for="field_actived">Actived</label>
+                    <input type="checkbox" class="form-control" name="actived" id="field_actived"
+                           formControlName="actived"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.deleted" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                           formControlName="deleted"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="userId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="citmilApp.userExtra.typeService" for="field_typeServices">Type Service</label>
+                    <select class="form-control" id="field_typeServices" multiple name="typeServices" formControlName="typeServices">
+                        <option [ngValue]="getSelected(editForm.get('typeServices')!.value, typeServiceOption)" *ngFor="let typeServiceOption of typeservices; trackBy: trackById">{{ typeServiceOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.calendarYearUser" for="field_calendarYearUser">Calendar Year User</label>
+                    <select class="form-control" id="field_calendarYearUser" name="calendarYearUser" formControlName="calendarYearUserId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="calendarYearUserOption.id" *ngFor="let calendarYearUserOption of calendaryearusers; trackBy: trackById">{{ calendarYearUserOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.company" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" formControlName="companyId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id" *ngFor="let companyOption of companies; trackBy: trackById">{{ companyOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.userExtra.timeBandAvailableUserDay" for="field_timeBandAvailableUserDay">Time Band Available User Day</label>
+                    <select class="form-control" id="field_timeBandAvailableUserDay" name="timeBandAvailableUserDay" formControlName="timeBandAvailableUserDayId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="timeBandAvailableUserDayOption.id" *ngFor="let timeBandAvailableUserDayOption of timebandavailableuserdays; trackBy: trackById">{{ timeBandAvailableUserDayOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

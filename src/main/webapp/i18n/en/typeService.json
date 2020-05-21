@@ -1,0 +1,31 @@
+{
+  "citmilApp": {
+    "typeService": {
+      "home": {
+        "title": "Type Services",
+        "createLabel": "Create a new Type Service",
+        "createOrEditLabel": "Create or edit a Type Service",
+        "notFound": "No Type Services found"
+      },
+      "created": "A new Type Service is created with identifier {{ param }}",
+      "updated": "A Type Service is updated with identifier {{ param }}",
+      "deleted": "A Type Service is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Type Service {{ id }}?"
+      },
+      "detail": {
+        "title": "Type Service"
+      },
+      "name": "Name",
+      "description": "Description",
+      "durationMinutes": "Duration Minutes",
+      "maxDayAppointment": "Max Day Appointment",
+      "minDayAppointment": "Min Day Appointment",
+      "price": "Price",
+      "icon": "Icon",
+      "actived": "Actived",
+      "company": "Company",
+      "userExtra": "User Extra"
+    }
+  }
+}

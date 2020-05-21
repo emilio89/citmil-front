@@ -1,0 +1,41 @@
+{
+  "citmilApp": {
+    "company": {
+      "home": {
+        "title": "Companies",
+        "createLabel": "Crear novo Company",
+        "createOrEditLabel": "Crear ou editar Company",
+        "notFound": "No Companies found"
+      },
+      "created": "Un novo Company foi creado co identificador {{ param }}",
+      "updated": "Un Company foi actualizado co identificador {{ param }}",
+      "deleted": "Un Company foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Company {{ id }}?"
+      },
+      "detail": {
+        "title": "Company"
+      },
+      "name": "Name",
+      "description": "Description",
+      "primaryColor": "Primary Color",
+      "secondaryColor": "Secondary Color",
+      "urlImg": "Url Img",
+      "email": "Email",
+      "phone": "Phone",
+      "maxDayAppointment": "Max Day Appointment",
+      "minDayAppointment": "Min Day Appointment",
+      "lat": "Lat",
+      "lng": "Lng",
+      "userExtra": "User Extra",
+      "calendarYearUser": "Calendar Year User",
+      "appointment": "Appointment",
+      "typeService": "Type Service",
+      "publicHoliday": "Public Holiday",
+      "timeBand": "Time Band",
+      "dynamicContent": "Dynamic Content",
+      "menuOptionsAvailable": "Menu Options Available",
+      "timeBandAvailableUserDay": "Time Band Available User Day"
+    }
+  }
+}

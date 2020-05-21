@@ -1,0 +1,30 @@
+{
+  "citmilApp": {
+    "calendarYearUser": {
+      "home": {
+        "title": "CalendarYearUsers",
+        "createLabel": "Crear novo Calendar Year User",
+        "createOrEditLabel": "Crear ou editar Calendar Year User",
+        "notFound": "No Calendar Year Users found"
+      },
+      "created": "Un novo Calendar Year User foi creado co identificador {{ param }}",
+      "updated": "Un Calendar Year User foi actualizado co identificador {{ param }}",
+      "deleted": "Un Calendar Year User foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Calendar Year User {{ id }}?"
+      },
+      "detail": {
+        "title": "Calendar Year User"
+      },
+      "day": "Day",
+      "year": "Year",
+      "isPublicHoliday": "Is Public Holiday",
+      "start": "Start",
+      "end": "End",
+      "userExtra": "User Extra",
+      "company": "Company",
+      "timeBandAvailableUserDay": "Time Band Available User Day",
+      "timeBand": "Time Band"
+    }
+  }
+}

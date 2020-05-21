@@ -1,0 +1,110 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="citmilApp.userExtra.home.title">User Extras</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-extra" [routerLink]="['/user-extra/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="citmilApp.userExtra.home.createLabel">
+            Create a new User Extra
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="userExtras?.length === 0">
+        <span jhiTranslate="citmilApp.userExtra.home.notFound">No userExtras found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="userExtras?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="citmilApp.userExtra.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address"><span jhiTranslate="citmilApp.userExtra.address">Address</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="citmilApp.userExtra.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="birthdate"><span jhiTranslate="citmilApp.userExtra.birthdate">Birthdate</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="urlImg"><span jhiTranslate="citmilApp.userExtra.urlImg">Url Img</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="actived"><span jhiTranslate="citmilApp.userExtra.actived">Actived</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="deleted"><span jhiTranslate="citmilApp.userExtra.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userId"><span jhiTranslate="citmilApp.userExtra.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="calendarYearUserId"><span jhiTranslate="citmilApp.userExtra.calendarYearUser">Calendar Year User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="companyId"><span jhiTranslate="citmilApp.userExtra.company">Company</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="timeBandAvailableUserDayId"><span jhiTranslate="citmilApp.userExtra.timeBandAvailableUserDay">Time Band Available User Day</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userExtra of userExtras ;trackBy: trackId">
+                    <td><a [routerLink]="['/user-extra', userExtra.id, 'view']">{{ userExtra.id }}</a></td>
+                    <td>{{ userExtra.description }}</td>
+                    <td>{{ userExtra.address }}</td>
+                    <td>{{ userExtra.phone }}</td>
+                    <td>{{ userExtra.birthdate | date:'mediumDate' }}</td>
+                    <td>
+                        <a *ngIf="userExtra.urlImg" (click)="openFile(userExtra.urlImgContentType, userExtra.urlImg)">
+                            <img [src]="'data:' + userExtra.urlImgContentType + ';base64,' + userExtra.urlImg" style="max-height: 30px;" alt="userExtra image"/>
+                        </a>
+                        <span *ngIf="userExtra.urlImg">{{ userExtra.urlImgContentType }}, {{ byteSize(userExtra.urlImg) }}</span>
+                    </td>
+                    <td>{{ userExtra.actived }}</td>
+                    <td>{{ userExtra.deleted }}</td>
+                    <td>
+                        {{ userExtra.userId }}
+                    </td>
+                    <td>
+                        <div *ngIf="userExtra.calendarYearUserId">
+                            <a [routerLink]="['/calendar-year-user', userExtra.calendarYearUserId , 'view']" >{{ userExtra.calendarYearUserId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="userExtra.companyId">
+                            <a [routerLink]="['/company', userExtra.companyId , 'view']" >{{ userExtra.companyId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="userExtra.timeBandAvailableUserDayId">
+                            <a [routerLink]="['/time-band-available-user-day', userExtra.timeBandAvailableUserDayId , 'view']" >{{ userExtra.timeBandAvailableUserDayId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/user-extra', userExtra.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/user-extra', userExtra.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(userExtra)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="userExtras?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

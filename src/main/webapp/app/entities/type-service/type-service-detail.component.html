@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="typeService">
+            <h2><span jhiTranslate="citmilApp.typeService.detail.title">Type Service</span> {{ typeService.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.typeService.name">Name</span></dt>
+                <dd>
+                    <span>{{ typeService.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.description">Description</span></dt>
+                <dd>
+                    <span>{{ typeService.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.durationMinutes">Duration Minutes</span></dt>
+                <dd>
+                    <span>{{ typeService.durationMinutes }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.maxDayAppointment">Max Day Appointment</span></dt>
+                <dd>
+                    <span>{{ typeService.maxDayAppointment }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.minDayAppointment">Min Day Appointment</span></dt>
+                <dd>
+                    <span>{{ typeService.minDayAppointment }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.price">Price</span></dt>
+                <dd>
+                    <span>{{ typeService.price }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.icon">Icon</span></dt>
+                <dd>
+                    <div *ngIf="typeService.icon">
+                        <a (click)="openFile(typeService?.iconContentType!, typeService?.icon)">
+                            <img [src]="'data:' + typeService.iconContentType + ';base64,' + typeService.icon" style="max-width: 100%;" alt="typeService image"/>
+                        </a>
+                        {{ typeService.iconContentType }}, {{ byteSize(typeService.icon) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.actived">Actived</span></dt>
+                <dd>
+                    <span>{{ typeService.actived }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.typeService.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="typeService.companyId">
+                        <a [routerLink]="['/company', typeService.companyId, 'view']">{{ typeService.companyId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/type-service', typeService.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

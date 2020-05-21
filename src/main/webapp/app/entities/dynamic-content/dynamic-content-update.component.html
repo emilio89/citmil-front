@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-dynamic-content-heading" jhiTranslate="citmilApp.dynamicContent.home.createOrEditLabel">Create or edit a Dynamic Content</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.dynamicContent.title" for="field_title">Title</label>
+                    <input type="text" class="form-control" name="title" id="field_title"
+                           formControlName="title"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.dynamicContent.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.dynamicContent.urlImg" for="field_urlImg">Url Img</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('urlImgContentType')!.value + ';base64,' + editForm.get('urlImg')!.value" style="max-height: 100px;" *ngIf="editForm.get('urlImg')!.value" alt="dynamicContent image"/>
+                        <div *ngIf="editForm.get('urlImg')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('urlImgContentType')!.value }}, {{ byteSize(editForm.get('urlImg')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('urlImg', 'urlImgContentType', 'file_urlImg')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_urlImg" (change)="setFileData($event, 'urlImg', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="urlImg" id="field_urlImg"
+                           formControlName="urlImg"/>
+                    <input type="hidden" class="form-control" name="urlImgContentType" id="field_urlImgContentType"
+                           formControlName="urlImgContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.dynamicContent.actived" for="field_actived">Actived</label>
+                    <input type="checkbox" class="form-control" name="actived" id="field_actived"
+                           formControlName="actived"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="citmilApp.dynamicContent.company" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" formControlName="companyId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id" *ngFor="let companyOption of companies; trackBy: trackById">{{ companyOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

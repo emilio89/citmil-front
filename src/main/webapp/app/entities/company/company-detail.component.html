@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="company">
+            <h2><span jhiTranslate="citmilApp.company.detail.title">Company</span> {{ company.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.company.name">Name</span></dt>
+                <dd>
+                    <span>{{ company.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.description">Description</span></dt>
+                <dd>
+                    <span>{{ company.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.primaryColor">Primary Color</span></dt>
+                <dd>
+                    <span>{{ company.primaryColor }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.secondaryColor">Secondary Color</span></dt>
+                <dd>
+                    <span>{{ company.secondaryColor }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.urlImg">Url Img</span></dt>
+                <dd>
+                    <div *ngIf="company.urlImg">
+                        <a (click)="openFile(company?.urlImgContentType!, company?.urlImg)">
+                            <img [src]="'data:' + company.urlImgContentType + ';base64,' + company.urlImg" style="max-width: 100%;" alt="company image"/>
+                        </a>
+                        {{ company.urlImgContentType }}, {{ byteSize(company.urlImg) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.email">Email</span></dt>
+                <dd>
+                    <span>{{ company.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ company.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.maxDayAppointment">Max Day Appointment</span></dt>
+                <dd>
+                    <span>{{ company.maxDayAppointment }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.minDayAppointment">Min Day Appointment</span></dt>
+                <dd>
+                    <span>{{ company.minDayAppointment }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.lat">Lat</span></dt>
+                <dd>
+                    <span>{{ company.lat }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.company.lng">Lng</span></dt>
+                <dd>
+                    <span>{{ company.lng }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/company', company.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

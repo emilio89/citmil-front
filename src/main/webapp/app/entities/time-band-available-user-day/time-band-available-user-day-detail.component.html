@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="timeBandAvailableUserDay">
+            <h2><span jhiTranslate="citmilApp.timeBandAvailableUserDay.detail.title">Time Band Available User Day</span> {{ timeBandAvailableUserDay.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="citmilApp.timeBandAvailableUserDay.year">Year</span></dt>
+                <dd>
+                    <span>{{ timeBandAvailableUserDay.year }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.timeBandAvailableUserDay.start">Start</span></dt>
+                <dd>
+                    <span>{{ timeBandAvailableUserDay.start }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.timeBandAvailableUserDay.end">End</span></dt>
+                <dd>
+                    <span>{{ timeBandAvailableUserDay.end }}</span>
+                </dd>
+                <dt><span jhiTranslate="citmilApp.timeBandAvailableUserDay.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="timeBandAvailableUserDay.companyId">
+                        <a [routerLink]="['/company', timeBandAvailableUserDay.companyId, 'view']">{{ timeBandAvailableUserDay.companyId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/time-band-available-user-day', timeBandAvailableUserDay.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

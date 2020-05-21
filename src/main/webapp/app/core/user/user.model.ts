@@ -1,17 +1,19 @@
+import { UserExtra } from "app/shared/model/user-extra.model"
 export interface IUser {
-  id?: any;
-  login?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  activated?: boolean;
-  langKey?: string;
-  authorities?: string[];
-  createdBy?: string;
-  createdDate?: Date;
-  lastModifiedBy?: string;
-  lastModifiedDate?: Date;
-  password?: string;
+  id?: any
+  login?: string
+  firstName?: string
+  lastName?: string
+  email?: string
+  activated?: boolean
+  langKey?: string
+  authorities?: string[]
+  createdBy?: string
+  createdDate?: Date
+  lastModifiedBy?: string
+  lastModifiedDate?: Date
+  password?: string
+  userExtra?: UserExtra
 }
 
 export class User implements IUser {
@@ -28,6 +30,7 @@ export class User implements IUser {
     public createdDate?: Date,
     public lastModifiedBy?: string,
     public lastModifiedDate?: Date,
-    public password?: string
+    public password?: string,
+    public userExtra?: UserExtra
   ) {}
 }

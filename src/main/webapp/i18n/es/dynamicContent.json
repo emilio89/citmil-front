@@ -1,0 +1,26 @@
+{
+  "citmilApp": {
+    "dynamicContent": {
+      "home": {
+        "title": "Dynamic Contents",
+        "createLabel": "Crear nuevo Dynamic Content",
+        "createOrEditLabel": "Crear o editar Dynamic Content",
+        "notFound": "Ningún Dynamic Contents encontrado"
+      },
+      "created": "Un nuevo Dynamic Content ha sido creado con el identificador {{ param }}",
+      "updated": "Un Dynamic Content ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Dynamic Content ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Dynamic Content {{ id }}?"
+      },
+      "detail": {
+        "title": "Dynamic Content"
+      },
+      "title": "Title",
+      "description": "Description",
+      "urlImg": "Url Img",
+      "actived": "Actived",
+      "company": "Company"
+    }
+  }
+}
