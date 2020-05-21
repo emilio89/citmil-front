@@ -9,8 +9,6 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { ITypeService, TypeService } from "app/shared/model/type-service.model"
 import { TypeServiceService } from "./type-service.service"
 import { AlertError } from "app/shared/alert/alert-error.model"
-import { ICompany } from "app/shared/model/company.model"
-import { CompanyService } from "app/entities/company/company.service"
 
 @Component({
   selector: "jhi-type-service-update",
@@ -18,7 +16,6 @@ import { CompanyService } from "app/entities/company/company.service"
 })
 export class TypeServiceUpdateComponent implements OnInit {
   isSaving = false
-  companies: ICompany[] = []
 
   editForm = this.fb.group({
     id: [],
@@ -30,15 +27,13 @@ export class TypeServiceUpdateComponent implements OnInit {
     price: [],
     icon: [],
     iconContentType: [],
-    actived: [],
-    companyId: []
+    actived: []
   })
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected typeServiceService: TypeServiceService,
-    protected companyService: CompanyService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -47,8 +42,6 @@ export class TypeServiceUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ typeService }) => {
       this.updateForm(typeService)
-
-      this.companyService.query().subscribe((res: HttpResponse<ICompany[]>) => (this.companies = res.body || []))
     })
   }
 
@@ -63,8 +56,7 @@ export class TypeServiceUpdateComponent implements OnInit {
       price: typeService.price,
       icon: typeService.icon,
       iconContentType: typeService.iconContentType,
-      actived: typeService.actived,
-      companyId: typeService.companyId
+      actived: typeService.actived
     })
   }
 
@@ -120,8 +112,7 @@ export class TypeServiceUpdateComponent implements OnInit {
       price: this.editForm.get(["price"])!.value,
       iconContentType: this.editForm.get(["iconContentType"])!.value,
       icon: this.editForm.get(["icon"])!.value,
-      actived: this.editForm.get(["actived"])!.value,
-      companyId: this.editForm.get(["companyId"])!.value
+      actived: this.editForm.get(["actived"])!.value
     }
   }
 
@@ -139,9 +130,5 @@ export class TypeServiceUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false
-  }
-
-  trackById(index: number, item: ICompany): any {
-    return item.id
   }
 }
