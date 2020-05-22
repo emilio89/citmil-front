@@ -13,7 +13,11 @@
         "dynamicContent": "Conteñido dinámico",
         "typeService": "Tipos de servizo",
         "timeBand": "Franxa horaria",
-        "appointment": "Listado de citas",
+        "appointment": {
+          "main": "Citas",
+          "list": "Listado de citas",
+          "new": "Nova cita"
+        },
         "calendarYearUser": "Calendario anual do usuario",
         "timeBandAvailableUserDay": "Franxa horaria dispoñible por usuario",
         "publicHoliday": "Vacacións",

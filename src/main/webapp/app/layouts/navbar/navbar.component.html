@@ -37,19 +37,23 @@
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
                         <fa-icon icon="calendar-check"></fa-icon>
-                        <span jhiTranslate="global.menu.entities.appointment">Appointment</span>
+                        <span jhiTranslate="global.menu.entities.appointment.main">Appointment</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
                     <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
                         <a class="dropdown-item" routerLink="appointment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="list-alt" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.appointment">Appointment</span>
+                            <span jhiTranslate="global.menu.entities.appointment.list">Appointment</span>
                         </a>
                     </li>
-                    <li>
-                        <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="/appointment/new" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="plus-square" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.appointment.new">Appointment</span>
+                        </a>
                     </li>
+                    <li></li>
                 </ul>
             </li>
 

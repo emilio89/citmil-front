@@ -13,7 +13,11 @@
         "dynamicContent": "Dynamic Content",
         "typeService": "Type Service",
         "timeBand": "Time Band",
-        "appointment": "Appointment",
+        "appointment": {
+          "main": "Appointments",
+          "list": "List appointment",
+          "new": "New appointment"
+        },
         "calendarYearUser": "Calendar Year User",
         "timeBandAvailableUserDay": "Time Band Available User Day",
         "publicHoliday": "Public Holiday",
