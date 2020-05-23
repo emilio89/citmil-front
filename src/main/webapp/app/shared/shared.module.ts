@@ -6,11 +6,12 @@ import { AlertErrorComponent } from './alert/alert-error.component';
 import { LoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
+import {JhMaterialModule} from 'app/shared/jh-material.module';
 @NgModule({
-  imports: [CitmilSharedLibsModule],
+  imports: [JhMaterialModule, CitmilSharedLibsModule],
   declarations: [FindLanguageFromKeyPipe, AlertComponent, AlertErrorComponent, LoginModalComponent, HasAnyAuthorityDirective],
   entryComponents: [LoginModalComponent],
-  exports: [
+  exports: [JhMaterialModule, 
     CitmilSharedLibsModule,
     FindLanguageFromKeyPipe,
     AlertComponent,
