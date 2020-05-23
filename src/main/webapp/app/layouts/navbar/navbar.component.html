@@ -56,6 +56,67 @@
                     <li></li>
                 </ul>
             </li>
+            <li
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                ngbDropdown
+                class="nav-item dropdown pointer"
+                display="dynamic"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+            >
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
+                    <span>
+                        <fa-icon icon="calendar"></fa-icon>
+                        <span jhiTranslate="global.menu.entities.calendar.main">Appointment</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="list-alt" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.calendar.view">Appointment</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a
+                            class="dropdown-item"
+                            routerLink="/calendar/generatemonth"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            (click)="collapseNavbar()"
+                        >
+                            <fa-icon icon="calendar-week" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.calendar.generatemonth">Appointment</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a
+                            class="dropdown-item"
+                            routerLink="/calendar/generateweek"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            (click)="collapseNavbar()"
+                        >
+                            <fa-icon icon="calendar-day" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.calendar.generateweek">Appointment</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a
+                            class="dropdown-item"
+                            routerLink="/calendar/generateanual"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            (click)="collapseNavbar()"
+                        >
+                            <fa-icon icon="calendar-times" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.calendar.generateanual">Appointment</span>
+                        </a>
+                    </li>
+
+                    <li></li>
+                </ul>
+            </li>
 
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li

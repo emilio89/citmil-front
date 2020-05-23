@@ -18,6 +18,13 @@
           "list": "Listado de citas",
           "new": "Nova cita"
         },
+        "calendar": {
+          "main": "Calendarios",
+          "view": "Ver calendarios",
+          "generatemonth": "Xenerador mensual",
+          "generateanual": "Xenerador anual",
+          "generateweek": "Xenerador semanal"
+        },
         "calendarYearUser": "Calendario anual do usuario",
         "timeBandAvailableUserDay": "Franxa horaria dispoñible por usuario",
         "publicHoliday": "Vacacións",
