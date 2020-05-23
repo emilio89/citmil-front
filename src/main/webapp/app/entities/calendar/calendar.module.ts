@@ -1,5 +1,3 @@
-import { MatInputModule } from "@angular/material/input"
-import { MatStepperModule } from "@angular/material/stepper"
 import { calendarRoute } from "./calendar.route"
 import { NgModule } from "@angular/core"
 import { CommonModule } from "@angular/common"
@@ -7,22 +5,11 @@ import { CommonModule } from "@angular/common"
 import { CalendarComponent } from "./calendar.component"
 import { RouterModule } from "@angular/router"
 import { FullCalendarModule } from "@fullcalendar/angular"
-import { MatFormFieldModule } from "@angular/material/form-field"
 import { ReactiveFormsModule } from "@angular/forms"
-import { MatButtonModule } from "@angular/material/button"
+import { JhMaterialModule } from "app/shared/jh-material.module"
 
 @NgModule({
   declarations: [CalendarComponent],
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    RouterModule.forChild(calendarRoute),
-    FullCalendarModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatStepperModule,
-    MatInputModule,
-    MatButtonModule
-  ]
+  imports: [ReactiveFormsModule, CommonModule, RouterModule.forChild(calendarRoute), FullCalendarModule, JhMaterialModule]
 })
 export class CalendarModule {}

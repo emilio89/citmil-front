@@ -6,7 +6,6 @@ import listPlugin from "@fullcalendar/list"
 
 import { EventInput } from "@fullcalendar/core"
 import timeGridPlugin from "@fullcalendar/timegrid"
-import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 
 @Component({
   selector: "jhi-calendar",
@@ -16,19 +15,9 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 export class CalendarComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, interactionPlugin, bootstrapPlugin, timeGridPlugin, listPlugin] // important!
   calendarEvents: EventInput[] = [{ title: "Evento hoxe", start: new Date() }]
-  isLinear = false
-  firstFormGroup!: FormGroup
-  secondFormGroup!: FormGroup
 
-  constructor(private formBuilder: FormBuilder) {}
-  ngOnInit(): void {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ["", Validators.required]
-    })
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ["", Validators.required]
-    })
-  }
+  constructor() {}
+  ngOnInit(): void {}
 
   handleDateClick(arg: EventInput): void {
     if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
