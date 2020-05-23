@@ -4,19 +4,31 @@
     "browsehappy": "Está a utilizar un navegador <strong>non actualizado</strong>. Por favor <a href=\"http://browsehappy.com/?locale=en\">actualice o seu navegador</a> para mellorar a súa experiencia.",
     "menu": {
       "home": "Inicio",
+      "generate-calendar-month": "Xerador mensual",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
         "userExtra": "User Extra",
-        "company": "Company",
-        "menuOptionsAvailable": "Menu Options Available",
-        "dynamicContent": "Dynamic Content",
-        "typeService": "Type Service",
-        "timeBand": "Time Band",
-        "appointment": "Appointment",
-        "calendarYearUser": "Calendar Year User",
-        "timeBandAvailableUserDay": "Time Band Available User Day",
-        "publicHoliday": "Public Holiday",
+        "company": "Empresa",
+        "menuOptionsAvailable": "Opcións de menú dispoñibles",
+        "dynamicContent": "Conteñido dinámico",
+        "typeService": "Tipos de servizo",
+        "timeBand": "Franxa horaria",
+        "appointment": {
+          "main": "Citas",
+          "list": "Listado de citas",
+          "new": "Nova cita"
+        },
+        "calendar": {
+          "main": "Calendarios",
+          "view": "Ver calendarios",
+          "generatemonth": "Xenerador mensual",
+          "generateanual": "Xenerador anual",
+          "generateweek": "Xenerador semanal"
+        },
+        "calendarYearUser": "Calendario anual do usuario",
+        "timeBandAvailableUserDay": "Franxa horaria dispoñible por usuario",
+        "publicHoliday": "Vacacións",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -46,8 +58,8 @@
     "form": {
       "username.label": "Usuario",
       "username.placeholder": "Seu usuario",
-      "currentpassword.label": "Current password",
-      "currentpassword.placeholder": "Current password",
+      "currentpassword.label": "Contrasinal actual",
+      "currentpassword.placeholder": "Contrasinal actual",
       "newpassword.label": "Novo contrasinal",
       "newpassword.placeholder": "Novo contrasinal",
       "confirmpassword.label": "Confirmación do novo contrasinal",
@@ -94,7 +106,7 @@
       "id": "ID"
     },
     "ribbon": {
-      "dev": "Development"
+      "dev": "Desarrollo"
     },
     "item-count": "Mostrando {{first}} - {{second}} de {{total}} elementos."
   },
@@ -106,7 +118,7 @@
       "cancel": "Cancelar",
       "delete": "Eliminar",
       "edit": "Editar",
-      "open": "Open",
+      "open": "Abrr",
       "save": "Gardar",
       "view": "Vista"
     },

@@ -1,0 +1,28 @@
+<p>calendar works!</p>
+
+<full-calendar
+    #calendar
+    defaultView="dayGridMonth"
+    timeZone="Europe/Madrid"
+    locale="es"
+    [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+    }"
+    [plugins]="calendarPlugins"
+    [events]="calendarEvents"
+    [firstDay]="1"
+    (dateClick)="handleDateClick($event)"
+    (eventClick)="handleEventClick($event)"
+    [editable]="true"
+    [droppable]="true"
+    (eventDrop)="drop($event)"
+    [bootstrapFontAwesome]="true"
+    [dragScroll]="true"
+    (eventResize)="eventDragStop($event)"
+    [eventDragMinDistance]="30"
+    [aspectRatio]="1.2"
+></full-calendar>
+
+bbb

@@ -4,19 +4,31 @@
     "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=es\">actualice su navegador</a> para mejorar su experiencia.",
     "menu": {
       "home": "Inicio",
+      "generate-calendar-month": "Generador mensual",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
         "userExtra": "User Extra",
-        "company": "Company",
-        "menuOptionsAvailable": "Menu Options Available",
-        "dynamicContent": "Dynamic Content",
-        "typeService": "Type Service",
-        "timeBand": "Time Band",
-        "appointment": "Appointment",
-        "calendarYearUser": "Calendar Year User",
-        "timeBandAvailableUserDay": "Time Band Available User Day",
-        "publicHoliday": "Public Holiday",
+        "company": "Empresa",
+        "menuOptionsAvailable": "Opciones de menú disponibles",
+        "dynamicContent": "Contenido dinámico",
+        "typeService": "Tipos de servicio",
+        "timeBand": "Franja horaria",
+        "appointment": {
+          "main": "Citas",
+          "list": "Listado de citas",
+          "new": "Nueva cita"
+        },
+        "calendar": {
+          "main": "Calendarios",
+          "view": "Ver calendarios",
+          "generatemonth": "Generador mensual",
+          "generateanual": "Generador anual",
+          "generateweek": "Generador semanal"
+        },
+        "calendarYearUser": "Calendario anual de usuario",
+        "timeBandAvailableUserDay": "Franja horaria disponible de usuario",
+        "publicHoliday": "Vacaciones",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

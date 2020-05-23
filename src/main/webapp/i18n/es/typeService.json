@@ -2,28 +2,28 @@
   "citmilApp": {
     "typeService": {
       "home": {
-        "title": "Type Services",
-        "createLabel": "Crear nuevo Type Service",
-        "createOrEditLabel": "Crear o editar Type Service",
-        "notFound": "Ningún Type Services encontrado"
+        "title": "Tipo de Servicios",
+        "createLabel": "Crear nuevo Tipo de Servicio",
+        "createOrEditLabel": "Crear o editar Tipo de Servicio",
+        "notFound": "Ningún Tipo de Servicios encontrado"
       },
-      "created": "Un nuevo Type Service ha sido creado con el identificador {{ param }}",
-      "updated": "Un Type Service ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Type Service ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo Tipo de Servicio ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo de Servicio ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo de Servicio ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Type Service {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Tipo de Servicio {{ id }}?"
       },
       "detail": {
-        "title": "Type Service"
+        "title": "Tipo de Servicio"
       },
-      "name": "Name",
-      "description": "Description",
-      "durationMinutes": "Duration Minutes",
+      "name": "Nombre",
+      "description": "Descripción",
+      "durationMinutes": "Duración del tipo de servicio (minutos)",
       "maxDayAppointment": "Max Day Appointment",
       "minDayAppointment": "Min Day Appointment",
-      "price": "Price",
-      "icon": "Icon",
-      "actived": "Actived",
+      "price": "Precio",
+      "icon": "Icono representativo",
+      "actived": "Activo",
       "company": "Company",
       "userExtra": "User Extra"
     }

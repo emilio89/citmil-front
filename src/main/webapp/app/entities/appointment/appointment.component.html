@@ -4,8 +4,8 @@
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-appointment" [routerLink]="['/appointment/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="citmilApp.appointment.home.createLabel">
-            Create a new Appointment
+            <span jhiTranslate="citmilApp.appointment.home.createLabel">
+                Create a new Appointment
             </span>
         </button>
     </h2>
@@ -22,59 +22,49 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="citmilApp.appointment.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="comments"><span jhiTranslate="citmilApp.appointment.comments">Comments</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="citmilApp.appointment.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="citmilApp.appointment.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dni"><span jhiTranslate="citmilApp.appointment.dni">Dni</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="start"><span jhiTranslate="citmilApp.appointment.start">Start</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="end"><span jhiTranslate="citmilApp.appointment.end">End</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="actived"><span jhiTranslate="citmilApp.appointment.actived">Actived</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="userExtraId"><span jhiTranslate="citmilApp.appointment.userExtra">User Extra</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="companyId"><span jhiTranslate="citmilApp.appointment.company">Company</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="name"><span jhiTranslate="citmilApp.appointment.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="comments"><span jhiTranslate="citmilApp.appointment.comments">Comments</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="email"><span jhiTranslate="citmilApp.appointment.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="phone"><span jhiTranslate="citmilApp.appointment.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="dni"><span jhiTranslate="citmilApp.appointment.dni">Dni</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="start"><span jhiTranslate="citmilApp.appointment.start">Start</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="end"><span jhiTranslate="citmilApp.appointment.end">End</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="actived"><span jhiTranslate="citmilApp.appointment.actived">Actived</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let appointment of appointments ;trackBy: trackId">
-                    <td><a [routerLink]="['/appointment', appointment.id, 'view']">{{ appointment.id }}</a></td>
+                <tr *ngFor="let appointment of appointments; trackBy: trackId">
+                    <td>
+                        <a [routerLink]="['/appointment', appointment.id, 'view']">{{ appointment.id }}</a>
+                    </td>
                     <td>{{ appointment.name }}</td>
                     <td>{{ appointment.comments }}</td>
                     <td>{{ appointment.email }}</td>
                     <td>{{ appointment.phone }}</td>
                     <td>{{ appointment.dni }}</td>
-                    <td>{{ appointment.start | date:'medium' }}</td>
-                    <td>{{ appointment.end | date:'medium' }}</td>
+                    <td>{{ appointment.start | date: "medium" }}</td>
+                    <td>{{ appointment.end | date: "medium" }}</td>
                     <td>{{ appointment.actived }}</td>
                     <td>
                         <div *ngIf="appointment.userExtraId">
-                            <a [routerLink]="['/user-extra', appointment.userExtraId , 'view']" >{{ appointment.userExtraId }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="appointment.companyId">
-                            <a [routerLink]="['/company', appointment.companyId , 'view']" >{{ appointment.companyId }}</a>
+                            <a [routerLink]="['/user-extra', appointment.userExtraId, 'view']">{{ appointment.userExtraId }}</a>
                         </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/appointment', appointment.id, 'view']"
-                                    class="btn btn-info btn-sm">
+                            <button type="submit" [routerLink]="['/appointment', appointment.id, 'view']" class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
-                            <button type="submit"
-                                    [routerLink]="['/appointment', appointment.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
+                            <button type="submit" [routerLink]="['/appointment', appointment.id, 'edit']" class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(appointment)"
-                                    class="btn btn-danger btn-sm">
+                            <button type="submit" (click)="delete(appointment)" class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                             </button>
@@ -91,7 +81,15 @@
         </div>
 
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            <ngb-pagination
+                [collectionSize]="totalItems"
+                [(page)]="ngbPaginationPage"
+                [pageSize]="itemsPerPage"
+                [maxSize]="5"
+                [rotate]="true"
+                [boundaryLinks]="true"
+                (pageChange)="loadPage($event)"
+            ></ngb-pagination>
         </div>
     </div>
 </div>

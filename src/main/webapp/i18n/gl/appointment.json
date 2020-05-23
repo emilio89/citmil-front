@@ -2,30 +2,28 @@
   "citmilApp": {
     "appointment": {
       "home": {
-        "title": "Appointments",
-        "createLabel": "Crear novo Appointment",
-        "createOrEditLabel": "Crear ou editar Appointment",
-        "notFound": "No Appointments found"
+        "title": "Citas",
+        "createLabel": "Crear nova Cita",
+        "createOrEditLabel": "Crear ou editar a Cita",
+        "notFound": "Non se encontraron citas"
       },
-      "created": "Un novo Appointment foi creado co identificador {{ param }}",
-      "updated": "Un Appointment foi actualizado co identificador {{ param }}",
-      "deleted": "Un Appointment foi eliminado co identificador {{ param }}",
+      "created": "Unha nova Cita foi creada co identificador {{ param }}",
+      "updated": "Unha nova Cita foi actualizada co identificador {{ param }}",
+      "deleted": "Unha nova Cita foi eliminada co identificador {{ param }}",
       "delete": {
-        "question": "Seguro que desexa eliminar Appointment {{ id }}?"
+        "question": "Seguro que desexa eliminar a cita {{ id }}?"
       },
       "detail": {
-        "title": "Appointment"
+        "title": "Cita"
       },
-      "name": "Name",
-      "comments": "Comments",
+      "name": "Nome",
+      "comments": "Comentarios",
       "email": "Email",
-      "phone": "Phone",
+      "phone": "Teléfono",
       "dni": "Dni",
-      "start": "Start",
-      "end": "End",
-      "actived": "Actived",
-      "userExtra": "User Extra",
-      "company": "Company"
+      "start": "Hora de comezo",
+      "end": "Hora de fin",
+      "actived": "Activada"
     }
   }
 }

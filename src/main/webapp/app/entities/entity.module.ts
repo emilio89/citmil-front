@@ -33,6 +33,10 @@ import { RouterModule } from "@angular/router"
         loadChildren: () => import("./appointment/appointment.module").then(m => m.CitmilAppointmentModule)
       },
       {
+        path: "calendar",
+        loadChildren: () => import("./calendar/calendar.module").then(m => m.CalendarModule)
+      },
+      {
         path: "calendar-year-user",
         loadChildren: () => import("./calendar-year-user/calendar-year-user.module").then(m => m.CitmilCalendarYearUserModule)
       },

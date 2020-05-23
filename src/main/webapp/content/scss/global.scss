@@ -1,7 +1,7 @@
-@import 'bootstrap-variables';
-@import '~bootstrap/scss/functions';
-@import '~bootswatch/dist/materia/variables';
-@import '~bootstrap/scss/variables';
+@import "bootstrap-variables";
+@import "~bootstrap/scss/functions";
+@import "~bootswatch/dist/materia/variables";
+@import "~bootstrap/scss/variables";
 
 /* ==============================================================
 Bootstrap tweaks
@@ -162,5 +162,7 @@ ui bootstrap tweaks
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* jhipster-needle-scss-add-main JHipster will add new css style */
+@import "~@fullcalendar/core/main.css";
+@import "~@fullcalendar/daygrid/main.css";
+@import "~@fullcalendar/timegrid/main.css";
+@import "~@fullcalendar/list/main.css";
