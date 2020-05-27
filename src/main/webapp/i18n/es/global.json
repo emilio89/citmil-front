@@ -5,6 +5,8 @@
     "menu": {
       "home": "Inicio",
       "generate-calendar-month": "Generador mensual",
+      "generate-calendar-week": "Generador semanal",
+      "generate-calendar-year": "Generador anual",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
