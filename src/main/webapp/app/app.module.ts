@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { FlexLayoutModule } from "@angular/flex-layout"
 import "hammerjs"
 import { CitmilAppGenerateCalendarMonthModule } from "./generate-calendar-month/generate-calendar-month.module"
+import { CitmilAppGenerateCalendarWeekModule } from './generate-calendar-week/generate-calendar-week.module';
+import { CitmilAppGenerateCalendarYearModule } from './generate-calendar-year/generate-calendar-year.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from "./layouts/main/main.component"
 import { NavbarComponent } from "./layouts/navbar/navbar.component"
@@ -29,6 +31,8 @@ import { FullCalendarModule } from "@fullcalendar/angular"
     CitmilCoreModule,
     CitmilHomeModule,
     CitmilAppGenerateCalendarMonthModule,
+    CitmilAppGenerateCalendarWeekModule,
+    CitmilAppGenerateCalendarYearModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     CitmilEntityModule,
     CitmilAppRoutingModule,

@@ -86,37 +86,37 @@
                             (click)="collapseNavbar()"
                         >
                             <fa-icon icon="calendar-times" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.generate-calendar-month">Generate Calendar Month</span>
+                            <span jhiTranslate="global.menu.generate-calendar-month">Generador menusal</span>
                         </a>
                     </li>
                     <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
                         <a
+                            routerLink="generate-calendar-week"
                             class="dropdown-item"
-                            routerLink="/calendar/generateweek"
                             routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }"
                             (click)="collapseNavbar()"
                         >
-                            <fa-icon icon="calendar-day" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.calendar.generateweek">Appointment</span>
+                            <fa-icon icon="hand-spock" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.generate-calendar-week">Generador semanal</span>
                         </a>
                     </li>
                     <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
                         <a
+                            routerLink="generate-calendar-year"
                             class="dropdown-item"
-                            routerLink="/calendar/generateanual"
                             routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }"
                             (click)="collapseNavbar()"
                         >
-                            <fa-icon icon="calendar-times" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.calendar.generateanual">Appointment</span>
+                            <fa-icon icon="hand-spock" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.generate-calendar-year"> Generador anual</span>
                         </a>
                     </li>
-
                     <li></li>
                 </ul>
             </li>
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li
                 *jhiHasAnyAuthority="'ROLE_SUPERADMIN'"

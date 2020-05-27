@@ -8,6 +8,8 @@
       "page-one": "Page One",
       "page-two": "Page Two",
       "generate-calendar-month": "Generate Calendar Month",
+      "generate-calendar-week": "Generate Calendar Week",
+      "generate-calendar-year": "Generate Calendar Year",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
