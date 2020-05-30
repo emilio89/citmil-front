@@ -11,8 +11,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { FlexLayoutModule } from "@angular/flex-layout"
 import "hammerjs"
 import { CitmilAppGenerateCalendarMonthModule } from "./generate-calendar-month/generate-calendar-month.module"
-import { CitmilAppGenerateCalendarWeekModule } from './generate-calendar-week/generate-calendar-week.module';
-import { CitmilAppGenerateCalendarYearModule } from './generate-calendar-year/generate-calendar-year.module';
+import { CitmilAppGenerateCalendarWeekModule } from "./generate-calendar-week/generate-calendar-week.module"
+import { CitmilAppGenerateCalendarYearModule } from "./generate-calendar-year/generate-calendar-year.module"
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from "./layouts/main/main.component"
 import { NavbarComponent } from "./layouts/navbar/navbar.component"
@@ -22,6 +22,7 @@ import { ActiveMenuDirective } from "./layouts/navbar/active-menu.directive"
 import { ErrorComponent } from "./layouts/error/error.component"
 import { CalendarModule } from "./entities/calendar/calendar.module"
 import { FullCalendarModule } from "@fullcalendar/angular"
+import { ModelEditWorkingDayModule } from "./entities/calendar/model-edit-working-day/model-edit-working-day.module"
 @NgModule({
   imports: [
     BrowserModule,
@@ -37,7 +38,8 @@ import { FullCalendarModule } from "@fullcalendar/angular"
     CitmilEntityModule,
     CitmilAppRoutingModule,
     CalendarModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ModelEditWorkingDayModule
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent]
