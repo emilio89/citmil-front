@@ -4,9 +4,11 @@ import { RouterModule } from "@angular/router"
 
 import { CitmilSharedModule } from "../shared/shared.module"
 import { GenerateCalendarWeekComponent } from "./generate-calendar-week.component"
+import { NgxMatSelectSearchModule } from "ngx-mat-select-search"
+import { JhMaterialModule } from "app/shared/jh-material.module"
 
 @NgModule({
-  imports: [CitmilSharedModule, RouterModule.forRoot([GENERATE_CALENDAR_WEEK_ROUTE], { useHash: true })],
+  imports: [CitmilSharedModule, RouterModule.forRoot([GENERATE_CALENDAR_WEEK_ROUTE], { useHash: true }), NgxMatSelectSearchModule, JhMaterialModule],
   declarations: [GenerateCalendarWeekComponent],
   entryComponents: [],
   providers: [],

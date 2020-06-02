@@ -7,11 +7,12 @@
     "no-outputs-metadata-property": true,
     "no-host-metadata-property": true,
     "no-input-rename": true,
-    "no-output-rename": true,
+    "no-output-rename": false,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": false,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "typedef": [true, "call-signature"]
+    "typedef": [false, "call-signature"],
+    "strictPropertyInitialization": false
   }
 }

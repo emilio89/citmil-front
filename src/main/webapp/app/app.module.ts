@@ -23,6 +23,7 @@ import { ErrorComponent } from "./layouts/error/error.component"
 import { CalendarModule } from "./entities/calendar/calendar.module"
 import { FullCalendarModule } from "@fullcalendar/angular"
 import { ModelEditWorkingDayModule } from "./entities/calendar/model-edit-working-day/model-edit-working-day.module"
+import { NgxMatSelectSearchModule } from "ngx-mat-select-search"
 @NgModule({
   imports: [
     BrowserModule,
@@ -39,7 +40,8 @@ import { ModelEditWorkingDayModule } from "./entities/calendar/model-edit-workin
     CitmilAppRoutingModule,
     CalendarModule,
     FullCalendarModule,
-    ModelEditWorkingDayModule
+    ModelEditWorkingDayModule,
+    NgxMatSelectSearchModule
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent]
