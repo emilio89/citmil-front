@@ -36,7 +36,6 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   ngOnInit() {
     // initialize users
     this.loadUsers()
-    console.error("this users 2", this.users)
     // load the initial user list
 
     // listen for search field value changes
@@ -46,7 +45,7 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   }
   async loadUsers() {
     const response: HttpResponse<User[]> = await this.userService
-      .query({
+      .getProfesionalesCompany({
         page: 0,
         size: 5000,
         sort: ["lastName"]

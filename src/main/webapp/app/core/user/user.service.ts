@@ -25,7 +25,6 @@ export class UserService {
   }
 
   query(req?: Pagination): Observable<HttpResponse<IUser[]>> {
-    console.error("entraaaaa")
     const options = createRequestOption(req)
     return this.http.get<IUser[]>(this.resourceUrl, { params: options, observe: "response" })
   }
@@ -36,5 +35,10 @@ export class UserService {
 
   authorities(): Observable<string[]> {
     return this.http.get<string[]>(SERVER_API_URL + "api/users/authorities")
+  }
+
+  getProfesionalesCompany(req?: Pagination): Observable<HttpResponse<IUser[]>> {
+    const options = createRequestOption(req)
+    return this.http.get<IUser[]>(this.resourceUrl + "/getProfesionalsCompany", { params: options, observe: "response" })
   }
 }
