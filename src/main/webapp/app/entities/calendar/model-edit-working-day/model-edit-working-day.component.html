@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Edición del día:</h1>
+<div mat-dialog-content>
+    <p>{{ data.arg.date }}</p>
+    <p>What's your favorite animal?</p>
+    <mat-form-field>
+        <mat-label>Formulario de edición</mat-label>
+        <input matInput [(ngModel)]="data.arg.title" />
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.arg.title" cdkFocusInitial>Ok</button>
+</div>

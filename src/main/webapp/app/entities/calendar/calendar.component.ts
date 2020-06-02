@@ -6,6 +6,8 @@ import listPlugin from "@fullcalendar/list"
 
 import { EventInput } from "@fullcalendar/core"
 import timeGridPlugin from "@fullcalendar/timegrid"
+import { MatDialog } from "@angular/material/dialog"
+import { ModelEditWorkingDayComponent } from "./model-edit-working-day/model-edit-working-day.component"
 
 @Component({
   selector: "jhi-calendar",
@@ -16,18 +18,18 @@ export class CalendarComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, interactionPlugin, bootstrapPlugin, timeGridPlugin, listPlugin] // important!
   calendarEvents: EventInput[] = [{ title: "Evento hoxe", start: new Date() }]
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
   ngOnInit(): void {}
 
   handleDateClick(arg: EventInput): void {
-    if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
-      this.calendarEvents = this.calendarEvents.concat({
-        // add new event data. must create new array
-        title: "New Event",
-        start: arg.date,
-        allDay: arg.allDay
-      })
-    }
+    const dialogRef = this.dialog.open(ModelEditWorkingDayComponent, {
+      width: "250px",
+      data: { arg }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.error("The dialog was closed", result)
+    })
   }
   handleEventClick(arg: EventInput): void {
     if (confirm("Would EDIT EVENTO to " + arg.event.title + " ?")) {
@@ -36,6 +38,7 @@ export class CalendarComponent implements OnInit {
       })
     }
   }
+
   drop(arg: any): void {
     console.error(arg)
   }
