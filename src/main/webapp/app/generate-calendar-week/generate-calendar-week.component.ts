@@ -16,7 +16,8 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   message: string
   totalItems = 0
   users: User[] | null = null
-
+  days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+  daysAdd = [1]
   /** control for the selected bank for multi-selection */
   public userMultiCtrl: FormControl = new FormControl()
 
@@ -111,5 +112,12 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
     if (index >= 0) {
       this.userMultiCtrl?.value.splice(index, 1)
     }
+  }
+
+  addOtherDay(): void {
+    this.daysAdd.push(1)
+  }
+  deleteLastDay(): void {
+    this.daysAdd.pop()
   }
 }

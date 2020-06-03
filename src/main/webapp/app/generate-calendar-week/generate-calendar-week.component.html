@@ -4,7 +4,7 @@
         <h6 class="text-right">{{ message }}</h6>
         <h1 class="text-capitalize text-center" jhiTranslate="generate-calendar-week.title">Title</h1>
 
-        <h3>Seleccionar profesionales</h3>
+        <h4>Seleccionar profesionales</h4>
         <div style="margin-top:20px">
             <mat-chip-list aria-label="Usuarios seleccionados">
                 <mat-chip *ngFor="let user of userMultiCtrl?.value" [removable]="false" (removed)="remove(user)">
@@ -14,7 +14,7 @@
         </div>
         <div style="margin-top:20px">
             <mat-form-field color="accent" style="width: 30%;">
-                <mat-select [formControl]="userMultiCtrl" placeholder="Usuarios" [multiple]="true" #multiSelect>
+                <mat-select [formControl]="userMultiCtrl" placeholder="Profesionales" [multiple]="true" #multiSelect>
                     <ngx-mat-select-search [showToggleAllCheckbox]="true" (toggleAll)="toggleSelectAll($event)" [formControl]="userMultiFilterCtrl"></ngx-mat-select-search>
                     <mat-option *ngFor="let user of filteredUsersMulti | async" [value]="user">
                         {{ user.firstName }}
@@ -22,10 +22,33 @@
                 </mat-select>
             </mat-form-field>
         </div>
+        <mat-form-field style="width: 30%;">
+            <mat-label>Fecha de comienzo de la semana</mat-label>
+            <input matInput [matDatepicker]="picker" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <h4>Días:</h4>
+        <div stystyle="width: 30%;" *ngFor="let number of daysAdd">
+            <mat-form-field>
+                <mat-label>Día</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let day of days" [value]="day">
+                        {{ day }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <h5 class="text-center" jhiTranslate="generate-calendar-week.subtitle">Subtitle</h5>
-        <hr />
-        <p class="text-justify" jhiTranslate="generate-calendar-week.content">Content</p>
+            <input placeholder="Hora de comienzo" aria-label="Hora de comienzo" [ngxTimepicker]="initTime" [format]="24" readonly />
+            <ngx-material-timepicker #initTime></ngx-material-timepicker>
+            <input placeholder="Hora de fin" aria-label="Hora de fin" [ngxTimepicker]="endTime" [format]="24" readonly />
+            <ngx-material-timepicker #endTime></ngx-material-timepicker>
+        </div>
+        <button (click)="addOtherDay()" title="Añadir otro día">
+            <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+        </button>
+        <button (click)="deleteLastDay()" title="Quitar un día">
+            <fa-icon icon="eraser" [fixedWidth]="true"></fa-icon>
+        </button>
     </div>
-    <div class="col-md-1"></div>
 </div>

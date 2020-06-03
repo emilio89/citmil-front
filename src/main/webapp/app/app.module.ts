@@ -1,3 +1,4 @@
+import { MyDateAdapter } from "./provider/date-adapter"
 import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 
@@ -24,6 +25,9 @@ import { CalendarModule } from "./entities/calendar/calendar.module"
 import { FullCalendarModule } from "@fullcalendar/angular"
 import { ModelEditWorkingDayModule } from "./entities/calendar/model-edit-working-day/model-edit-working-day.module"
 import { NgxMatSelectSearchModule } from "ngx-mat-select-search"
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker"
+import { DateAdapter } from "@angular/material/core"
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -41,9 +45,11 @@ import { NgxMatSelectSearchModule } from "ngx-mat-select-search"
     CalendarModule,
     FullCalendarModule,
     ModelEditWorkingDayModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    NgxMaterialTimepickerModule
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
-  bootstrap: [MainComponent]
+  bootstrap: [MainComponent],
+  providers: [{ provide: DateAdapter, useClass: MyDateAdapter }]
 })
 export class CitmilAppModule {}
