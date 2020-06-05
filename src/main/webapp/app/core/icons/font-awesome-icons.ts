@@ -45,7 +45,8 @@ import {
   faCalendarTimes,
   faHandSpock,
   faMinus,
-  faEraser
+  faEraser,
+  faFastForward
   // jhipster-needle-add-icon-import
 } from "@fortawesome/free-solid-svg-icons"
 
@@ -96,6 +97,7 @@ export const fontAwesomeIcons = [
   faCalendarTimes,
   faHandSpock,
   faMinus,
-  faEraser
+  faEraser,
+  faFastForward
   // jhipster-needle-add-icon-import
 ]

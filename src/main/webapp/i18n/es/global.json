@@ -122,7 +122,8 @@
       "edit": "Editar",
       "open": "Abrir",
       "save": "Guardar",
-      "view": "Vista"
+      "view": "Vista",
+      "generate": "Generar"
     },
     "detail": {
       "field": "Campo",

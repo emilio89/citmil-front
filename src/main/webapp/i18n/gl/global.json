@@ -122,7 +122,8 @@
       "edit": "Editar",
       "open": "Abrr",
       "save": "Gardar",
-      "view": "Vista"
+      "view": "Vista",
+      "generate": "Xerar"
     },
     "detail": {
       "field": "Campo",
