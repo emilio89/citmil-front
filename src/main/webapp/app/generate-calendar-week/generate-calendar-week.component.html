@@ -3,52 +3,63 @@
     <div class="col-md-10">
         <h6 class="text-right">{{ message }}</h6>
         <h1 class="text-capitalize text-center" jhiTranslate="generate-calendar-week.title">Title</h1>
-
-        <h4>Seleccionar profesionales</h4>
-        <div style="margin-top:20px">
-            <mat-chip-list aria-label="Usuarios seleccionados">
-                <mat-chip *ngFor="let user of userMultiCtrl?.value" [removable]="false" (removed)="remove(user)">
-                    {{ user.firstName }}
-                </mat-chip>
-            </mat-chip-list>
-        </div>
-        <div style="margin-top:20px">
-            <mat-form-field color="accent" style="width: 30%;">
-                <mat-select [formControl]="userMultiCtrl" placeholder="Profesionales" [multiple]="true" #multiSelect>
-                    <ngx-mat-select-search [showToggleAllCheckbox]="true" (toggleAll)="toggleSelectAll($event)" [formControl]="userMultiFilterCtrl"></ngx-mat-select-search>
-                    <mat-option *ngFor="let user of filteredUsersMulti | async" [value]="user">
+        <form name="generateWeekForm" role="form" novalidate (ngSubmit)="generateWeek()" [formGroup]="generateWeekForm">
+            <h4>Seleccionar profesionales</h4>
+            <div style="margin-top:20px">
+                <mat-chip-list aria-label="Usuarios seleccionados">
+                    <mat-chip *ngFor="let user of userMultiCtrl?.value" [removable]="false" (removed)="remove(user)">
                         {{ user.firstName }}
-                    </mat-option>
-                </mat-select>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <div style="margin-top:20px">
+                <mat-form-field color="accent" style="width: 30%;">
+                    <mat-select [formControl]="userMultiCtrl" placeholder="Profesionales" [multiple]="true" #multiSelect>
+                        <ngx-mat-select-search [showToggleAllCheckbox]="true" (toggleAll)="toggleSelectAll($event)" formArrayName="users"></ngx-mat-select-search>
+                        <mat-option *ngFor="let user of filteredUsersMulti | async" [value]="user">
+                            {{ user.firstName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <mat-form-field style="width: 30%;">
+                <mat-label>Fecha de comienzo de la semana</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="startWeek" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker f #picker></mat-datepicker>
             </mat-form-field>
-        </div>
-        <mat-form-field style="width: 30%;">
-            <mat-label>Fecha de comienzo de la semana</mat-label>
-            <input matInput [matDatepicker]="picker" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <h4>Días:</h4>
-        <div stystyle="width: 30%;" *ngFor="let number of daysAdd">
-            <mat-form-field>
-                <mat-label>Día</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let day of days" [value]="day">
-                        {{ day }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <h4>Días:</h4>
+            <div stystyle="width: 30%;" *ngFor="let ticket of t.controls; let i = index">
+                <div [formGroup]="ticket" class="form-row">
+                    <mat-form-field>
+                        <mat-label>Día</mat-label>
+                        <mat-select formControlName="dia">
+                            <mat-option *ngFor="let day of days" [value]="day">
+                                {{ day }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
-            <input placeholder="Hora de comienzo" aria-label="Hora de comienzo" [ngxTimepicker]="initTime" [format]="24" readonly />
-            <ngx-material-timepicker #initTime></ngx-material-timepicker>
-            <input placeholder="Hora de fin" aria-label="Hora de fin" [ngxTimepicker]="endTime" [format]="24" readonly />
-            <ngx-material-timepicker #endTime></ngx-material-timepicker>
-        </div>
-        <button (click)="addOtherDay()" title="Añadir otro día">
-            <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
-        </button>
-        <button (click)="deleteLastDay()" title="Quitar un día">
-            <fa-icon icon="eraser" [fixedWidth]="true"></fa-icon>
-        </button>
+                    <input formControlName="startHour" placeholder="Hora de comienzo" aria-label="Hora de comienzo" [ngxTimepicker]="initTime" [format]="24" readonly />
+                    <ngx-material-timepicker #initTime></ngx-material-timepicker>
+                    <input formControlName="endHour" placeholder="Hora de fin" aria-label="Hora de fin" [ngxTimepicker]="endTime" [format]="24" readonly />
+                    <ngx-material-timepicker #endTime></ngx-material-timepicker>
+                </div>
+            </div>
+            <div>
+                <button (click)="addOtherDay()" title="Añadir otro día">
+                    <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                </button>
+                <button (click)="deleteLastDay()" title="Quitar un día">
+                    <fa-icon icon="eraser" [fixedWidth]="true"></fa-icon>
+                </button>
+            </div>
+
+            <div style="margin-top:15px">
+                <button type="submit" id="save-entity" [disabled]="generateWeekForm.invalid" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">generate</span>
+                </button>
+            </div>
+        </form>
     </div>
 </div>

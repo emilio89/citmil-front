@@ -1,6 +1,6 @@
 import { UserService } from "./../core/user/user.service"
 import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from "@angular/core"
-import { FormControl } from "@angular/forms"
+import { FormControl, FormBuilder, FormArray, Validators } from "@angular/forms"
 import { ReplaySubject, Subject } from "rxjs"
 import { MatSelect } from "@angular/material/select"
 import { takeUntil, take } from "rxjs/operators"
@@ -21,6 +21,12 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   /** control for the selected bank for multi-selection */
   public userMultiCtrl: FormControl = new FormControl()
 
+  generateWeekForm = this.fb.group({
+    users: [],
+    startWeek: [],
+    timeBandsDay: new FormArray([])
+  })
+
   /** control for the MatSelect filter keyword multi-selection */
   public userMultiFilterCtrl: FormControl = new FormControl()
 
@@ -32,17 +38,21 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>()
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private fb: FormBuilder) {}
 
   ngOnInit() {
-    // initialize users
     this.loadUsers()
-    // load the initial user list
 
-    // listen for search field value changes
     this.userMultiFilterCtrl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(() => {
       this.filterBanksMulti()
     })
+    this.t.push(
+      this.fb.group({
+        dia: ["", Validators.required],
+        startHour: ["", Validators.required],
+        endHour: ["", Validators.required]
+      })
+    )
   }
   async loadUsers() {
     const response: HttpResponse<User[]> = await this.userService
@@ -52,9 +62,7 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
         sort: ["lastName"]
       })
       .toPromise()
-    console.error(response)
     this.users = response.body
-    console.error(this.users)
     this.filteredUsersMulti.next(this.users.slice())
   }
   ngAfterViewInit() {
@@ -113,11 +121,30 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
       this.userMultiCtrl?.value.splice(index, 1)
     }
   }
+  // convenience getters for easy access to form fields
+  get f() {
+    return this.generateWeekForm.controls
+  }
+  get t() {
+    return this.f.timeBandsDay as FormArray
+  }
 
   addOtherDay(): void {
-    this.daysAdd.push(1)
+    this.t.push(
+      this.fb.group({
+        dia: ["", Validators.required],
+        startHour: ["", Validators.required],
+        endHour: ["", Validators.required]
+      })
+    )
   }
+
   deleteLastDay(): void {
-    this.daysAdd.pop()
+    this.t.removeAt(this.t.controls.length - 1)
+  }
+  generateWeek() {
+    console.error("entra en generate week")
+    console.error("users", this.userMultiCtrl?.value)
+    console.error(this.generateWeekForm)
   }
 }
