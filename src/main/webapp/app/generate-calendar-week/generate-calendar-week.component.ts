@@ -1,3 +1,4 @@
+import { IGenerateCalendarWeek } from "./../interface/generate-calendar-week"
 import { ITimeBandDay } from "./../interface/time-band.model"
 import { UserService } from "./../core/user/user.service"
 import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from "@angular/core"
@@ -9,6 +10,7 @@ import { HttpResponse } from "@angular/common/http"
 import { User } from "app/core/user/user.model"
 import * as moment from "moment"
 import { MatSnackBar, MatSnackBarConfig } from "@angular/material/snack-bar"
+import { GenerateCalendarWeekService } from "./generate-calendar-week.service"
 
 @Component({
   selector: "jhi-generate-calendar-week",
@@ -19,7 +21,15 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   message: string
   totalItems = 0
   users: User[] | null = null
-  days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+  days = [
+    { number: 1, day: "Lunes" },
+    { number: 2, day: "Martes" },
+    { number: 3, day: "Miércoles" },
+    { number: 4, day: "Jueves" },
+    { number: 5, day: "Viernes" },
+    { number: 6, day: "Sábado" },
+    { number: 7, day: "Domingo" }
+  ]
   daysAdd = [1]
   /** control for the selected user for multi-selection */
   public userMultiCtrl: FormControl = new FormControl()
@@ -41,7 +51,7 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>()
 
-  constructor(private userService: UserService, private fb: FormBuilder, private _snackBar: MatSnackBar) {}
+  constructor(private userService: UserService, private fb: FormBuilder, private _snackBar: MatSnackBar, private generateCalendarWeekService: GenerateCalendarWeekService) {}
 
   ngOnInit() {
     this.loadUsers()
@@ -51,9 +61,9 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
     })
     this.t.push(
       this.fb.group({
-        dia: [""],
-        start: [""],
-        end: [""]
+        day: ["", Validators.required],
+        start: ["", Validators.required],
+        end: ["", Validators.required]
       })
     )
   }
@@ -135,7 +145,7 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   addOtherDay(): void {
     this.t.push(
       this.fb.group({
-        dia: ["", Validators.required],
+        day: ["", Validators.required],
         start: ["", Validators.required],
         end: ["", Validators.required]
       })
@@ -146,11 +156,11 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
     this.t.removeAt(this.t.controls.length - 1)
   }
   checkHours(timeBandsDays: ITimeBandDay[]): boolean {
-    // eslint-disable-next-line no-console
-    console.log(timeBandsDays)
+    /* eslint-disable no-console */
 
     let correctHours = true
     timeBandsDays.forEach(timeBandDay => {
+      // Inicializo las horas para comparar
       const dtend = moment("2020-01-01" + " " + timeBandDay.end)
       const dtstart = moment("2020-01-01" + " " + timeBandDay.start)
       if (dtend.isBefore(dtstart)) {
@@ -160,19 +170,21 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
     return correctHours
   }
   generateWeek() {
-    // eslint-disable-next-line no-console
-    console.log("entraraaa??")
-
     if (this.checkHours(this.generateWeekForm.get("timeBandsDay").value)) {
-      console.error("NO ERROR")
+      this.generateWeekForm.patchValue({ users: this.userMultiCtrl.value })
+      // send this.generateWeekForm
+      const data: IGenerateCalendarWeek = {
+        users: this.generateWeekForm.value.users,
+        timeBandsDay: this.generateWeekForm.value.timeBandsDay
+      }
+
+      this.generateCalendarWeekService.generateCalendarWeek(data)
     } else {
-      console.error("MOSTRAR ERROR")
       const config = new MatSnackBarConfig()
       config.duration = 2000
       config.panelClass = ["bg-danger"]
 
-      this._snackBar.open("Error en las horas", undefined, config)
+      this._snackBar.open("La hora de fin es anterior a la hora de inicio", undefined, config)
     }
-    console.error(this.generateWeekForm)
   }
 }

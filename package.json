@@ -42,6 +42,7 @@
     "ngx-infinite-scroll": "8.0.1",
     "ngx-mat-select-search": "^2.2.0",
     "ngx-material-timepicker": "^5.5.3",
+    "ngx-spinner": "^9.0.2",
     "ngx-webstorage": "5.0.0",
     "rxjs": "6.5.3",
     "swagger-ui-dist": "3.24.3",

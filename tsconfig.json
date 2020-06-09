@@ -23,5 +23,8 @@
     "genDir": "build/resources/main/aot",
     "fullTemplateTypeCheck": true,
     "preserveWhitespaces": true
+  },
+  "rules": {
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"]
   }
 }
