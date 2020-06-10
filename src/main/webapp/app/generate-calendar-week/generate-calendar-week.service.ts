@@ -54,9 +54,9 @@ export class GenerateCalendarWeekService {
   protected convertDateFromClientWeek(generateWeek: IGenerateCalendarWeek): IGenerateCalendarWeek {
     const timeBands = []
     generateWeek.timeBandsDay.forEach(element => {
-      const dtend = moment("2020-01-01" + " " + element.end)
-      const dtstart = moment("2020-01-01" + " " + element.start)
-      const timeBand = { day: element.day, start: dtstart.toJSON(), end: dtend.toJSON() }
+      const dtend = element.end
+      const dtstart = element.start
+      const timeBand = { day: element.day, start: dtstart, end: dtend }
       timeBands.push(timeBand)
     })
     const copy: IGenerateCalendarWeek = Object.assign({}, generateWeek, {
