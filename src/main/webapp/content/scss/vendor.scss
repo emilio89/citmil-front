@@ -4,12 +4,35 @@
 put Sass variables here:
 eg $input-color: red;
 ****************************/
-@import '~bootswatch/dist/materia/variables';
+@import "~bootswatch/dist/materia/variables";
 // Override Bootstrap variables
-@import 'bootstrap-variables';
+@import "bootstrap-variables";
 // Import Bootstrap source files from node_modules
-@import '~bootstrap/scss/bootstrap';
-@import '~bootswatch/dist/materia/bootswatch';
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/materia/bootswatch";
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */
+
+$my-blue: (
+  50: #2196f3
+);
+$primary: mat-palette(#2196f3);
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+  background: #2196f3 !important;
+}
+.mat-accent .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #2196f3 !important;
+}
+.mat-form-field.mat-focused .mat-form-field-label.mat-accent {
+  color: #2196f3 !important;
+}
+.mat-form-field.mat-focused .mat-form-field-ripple.mat-accent {
+  background-color: #2196f3 !important;
+}
+.mat-form-field.mat-focused.mat-accent .mat-select-arrow {
+  color: #2196f3 !important;
+}

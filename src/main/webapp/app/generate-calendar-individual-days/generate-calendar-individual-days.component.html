@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 center">
+        <h6 class="text-right">{{ message }}</h6>
+        <h1 class="text-capitalize text-center" jhiTranslate="generate-calendar-individual-days.title">Title</h1>
+        <div class="center">
+            <form style="width:100%" name="generateIndividualDaysForm" role="form" (ngSubmit)="generateIndividualDays()" [formGroup]="generateIndividualDaysForm">
+                <div style="margin-top:20px">
+                    <mat-chip-list aria-label="Profesionales seleccionados">
+                        <mat-chip *ngFor="let user of userMultiCtrl?.value" [removable]="false" (removed)="remove(user)">
+                            {{ user.firstName }}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div style="margin-top:20px">
+                    <mat-form-field color="accent" style="width: 100%;">
+                        <mat-select [formControl]="userMultiCtrl" placeholder="Profesionales" [multiple]="true" #multiSelect required>
+                            <ngx-mat-select-search
+                                [formControl]="userMultiFilterCtrl"
+                                placeholderLabel="Profesionales"
+                                (noEntriesFoundLabel)="('Sin resultados')"
+                                formArrayName="users"
+                            ></ngx-mat-select-search>
+                            <mat-option *ngFor="let user of filteredUsersMulti | async" [value]="user">
+                                {{ user.firstName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="days" style="width: 100%;" *ngFor="let day of t.controls; let i = index">
+                    <div [formGroup]="day" class="form-row">
+                        <mat-form-field style="width: 50%;">
+                            <mat-label>Seleccione día</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="day" required />
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker f #picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <!--   <input formControlName="end" placeholder="Hora de fin" aria-label="Hora de fin" [ngxTimepicker]="endTime" [format]="24" required />
+                        <ngx-material-timepicker #endTime></ngx-material-timepicker>-->
+                        <mat-form-field>
+                            <mat-label>Hora de comienzo</mat-label>
+                            <input
+                                matInput
+                                type="time"
+                                formControlName="start"
+                                placeholder="Hora de comienzo"
+                                aria-label="Hora de comienzo"
+                                placeholder="Hora de fin"
+                                aria-label="Hora de fin"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Hora de fin</mat-label>
+
+                            <input
+                                matInput
+                                type="time"
+                                formControlName="end"
+                                placeholder="Hora de comienzo"
+                                aria-label="Hora de comienzo"
+                                placeholder="Hora de fin"
+                                aria-label="Hora de fin"
+                                required
+                            />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                    <a (click)="addOtherDay()" title="Añadir otro día">
+                        <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                    </a>
+                    <a (click)="deleteLastDay()" title="Quitar un día">
+                        <fa-icon icon="eraser" [fixedWidth]="true"></fa-icon>
+                    </a>
+                </div>
+
+                <div style="margin-top:15px">
+                    <button type="submit" [disabled]="generateIndividualDaysForm.invalid" id="save-entity" class="btn btn-primary">
+                        <fa-icon icon="fast-forward"></fa-icon>&nbsp;<span jhiTranslate="entity.action.generate">generate</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

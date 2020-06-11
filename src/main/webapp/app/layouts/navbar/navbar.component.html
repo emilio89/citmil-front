@@ -91,14 +91,14 @@
                     </li>
                     <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
                         <a
-                            routerLink="generate-calendar-week"
+                            routerLink="generate-calendar-individual-days"
                             class="dropdown-item"
                             routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }"
                             (click)="collapseNavbar()"
                         >
                             <fa-icon icon="hand-spock" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.generate-calendar-week">Generador semanal</span>
+                            <span jhiTranslate="global.menu.generate-calendar-individual-days">Generador de calendario por días</span>
                         </a>
                     </li>
                     <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
