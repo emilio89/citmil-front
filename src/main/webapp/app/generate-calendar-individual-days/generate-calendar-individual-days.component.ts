@@ -21,16 +21,6 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
   message: string
   totalItems = 0
   users: User[] | null = null
-  days = [
-    { number: 1, day: "Lunes" },
-    { number: 2, day: "Martes" },
-    { number: 3, day: "Miércoles" },
-    { number: 4, day: "Jueves" },
-    { number: 5, day: "Viernes" },
-    { number: 6, day: "Sábado" },
-    { number: 7, day: "Domingo" }
-  ]
-  daysAdd = [1]
   /** control for the selected user for multi-selection */
   public userMultiCtrl: FormControl = new FormControl()
 
