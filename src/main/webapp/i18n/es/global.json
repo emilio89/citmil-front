@@ -5,7 +5,7 @@
     "menu": {
       "home": "Inicio",
       "generate-calendar-month": "Generador mensual",
-      "generate-calendar-week": "Generador semanal",
+      "generate-calendar-individual-days": "Generador de calendario por días",
       "generate-calendar-year": "Generador anual",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
@@ -26,7 +26,7 @@
           "view": "Ver calendarios",
           "generatemonth": "Generador mensual",
           "generateanual": "Generador anual",
-          "generateweek": "Generador semanal"
+          "generateindividual-days": "Generador por días"
         },
         "calendarYearUser": "Calendario anual de usuario",
         "timeBandAvailableUserDay": "Franja horaria disponible de usuario",

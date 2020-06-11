@@ -2,9 +2,9 @@
     <div class="col-md-1"></div>
     <div class="col-md-10 center">
         <h6 class="text-right">{{ message }}</h6>
-        <h1 class="text-capitalize text-center" jhiTranslate="generate-calendar-week.title">Title</h1>
+        <h1 class="text-capitalize text-center" jhiTranslate="generate-calendar-individual-days.title">Title</h1>
         <div class="center">
-            <form style="width:100%" name="generateWeekForm" role="form" (ngSubmit)="generateWeek()" [formGroup]="generateWeekForm">
+            <form style="width:100%" name="generateIndividualDaysForm" role="form" (ngSubmit)="generateIndividualDays()" [formGroup]="generateIndividualDaysForm">
                 <div style="margin-top:20px">
                     <mat-chip-list aria-label="Profesionales seleccionados">
                         <mat-chip *ngFor="let user of userMultiCtrl?.value" [removable]="false" (removed)="remove(user)">
@@ -77,7 +77,7 @@
                 </div>
 
                 <div style="margin-top:15px">
-                    <button type="submit" [disabled]="generateWeekForm.invalid" id="save-entity" class="btn btn-primary">
+                    <button type="submit" [disabled]="generateIndividualDaysForm.invalid" id="save-entity" class="btn btn-primary">
                         <fa-icon icon="fast-forward"></fa-icon>&nbsp;<span jhiTranslate="entity.action.generate">generate</span>
                     </button>
                 </div>

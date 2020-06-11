@@ -1,3 +1,1 @@
-describe('GenerateCalendarWeekComponent Tests', () => {
-
-});
+describe("GenerateCalendarIndividualDaysComponent Tests", () => {})

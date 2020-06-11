@@ -8,7 +8,7 @@
       "page-one": "Page One",
       "page-two": "Page Two",
       "generate-calendar-month": "Generate Calendar Month",
-      "generate-calendar-week": "Generate Calendar Week",
+      "generate-calendar-individual-days": "Generate Calendar IndividualDays",
       "generate-calendar-year": "Generate Calendar Year",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
@@ -29,7 +29,7 @@
           "view": "View calendars",
           "generatemonth": "Month generator",
           "generateanual": "Anual generator",
-          "generateweek": "Week generator"
+          "generateindividual-days": "IndividualDays generator"
         },
         "calendarYearUser": "Calendar Year User",
         "timeBandAvailableUserDay": "Time Band Available User Day",

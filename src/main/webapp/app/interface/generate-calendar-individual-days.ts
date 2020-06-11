@@ -1,7 +1,7 @@
 import { ITimeBandDay } from "./time-band.model"
-import { IUser } from "./../core/user/user.model"
+import { IUser } from "../core/user/user.model"
 
-export interface IGenerateCalendarWeek {
+export interface IGenerateCalendarIndividualDays {
   users?: IUser[]
   timeBandsDay?: ITimeBandDay[]
 }

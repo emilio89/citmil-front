@@ -1,6 +1,6 @@
-import { IGenerateCalendarWeek } from "./../interface/generate-calendar-week"
-import { ITimeBandDay } from "./../interface/time-band.model"
-import { UserService } from "./../core/user/user.service"
+import { IGenerateCalendarIndividualDays } from "./../interface/generate-calendar-individual-days"
+import { ITimeBandDay } from "../interface/time-band.model"
+import { UserService } from "../core/user/user.service"
 import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from "@angular/core"
 import { FormControl, FormBuilder, FormArray, Validators } from "@angular/forms"
 import { ReplaySubject, Subject } from "rxjs"
@@ -10,14 +10,14 @@ import { HttpResponse } from "@angular/common/http"
 import { User } from "app/core/user/user.model"
 import * as moment from "moment"
 import { MatSnackBar, MatSnackBarConfig } from "@angular/material/snack-bar"
-import { GenerateCalendarWeekService } from "./generate-calendar-week.service"
+import { GenerateCalendarIndividualDaysService } from "./generate-calendar-individual-days.service"
 
 @Component({
-  selector: "jhi-generate-calendar-week",
-  templateUrl: "./generate-calendar-week.component.html",
-  styleUrls: ["generate-calendar-week.component.scss"]
+  selector: "jhi-generate-calendar-individual-days",
+  templateUrl: "./generate-calendar-individual-days.component.html",
+  styleUrls: ["generate-calendar-individual-days.component.scss"]
 })
-export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterViewInit, OnDestroy {
+export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestroy, AfterViewInit, OnDestroy {
   message: string
   totalItems = 0
   users: User[] | null = null
@@ -34,9 +34,9 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   /** control for the selected user for multi-selection */
   public userMultiCtrl: FormControl = new FormControl()
 
-  generateWeekForm = this.fb.group({
+  generateIndividualDaysForm = this.fb.group({
     users: [],
-    startWeek: [],
+    startIndividualDays: [],
     timeBandsDay: new FormArray([])
   })
 
@@ -51,7 +51,12 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>()
 
-  constructor(private userService: UserService, private fb: FormBuilder, private _snackBar: MatSnackBar, private generateCalendarWeekService: GenerateCalendarWeekService) {}
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private generateCalendarIndividualDaysService: GenerateCalendarIndividualDaysService
+  ) {}
 
   ngOnInit() {
     this.loadUsers()
@@ -136,7 +141,7 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
   }
   // convenience getters for easy access to form fields
   get f() {
-    return this.generateWeekForm.controls
+    return this.generateIndividualDaysForm.controls
   }
   get t() {
     return this.f.timeBandsDay as FormArray
@@ -169,16 +174,16 @@ export class GenerateCalendarWeekComponent implements OnInit, OnDestroy, AfterVi
     })
     return correctHours
   }
-  generateWeek() {
-    if (this.checkHours(this.generateWeekForm.get("timeBandsDay").value)) {
-      this.generateWeekForm.patchValue({ users: this.userMultiCtrl.value })
-      // send this.generateWeekForm
-      const data: IGenerateCalendarWeek = {
-        users: this.generateWeekForm.value.users,
-        timeBandsDay: this.generateWeekForm.value.timeBandsDay
+  generateIndividualDays() {
+    if (this.checkHours(this.generateIndividualDaysForm.get("timeBandsDay").value)) {
+      this.generateIndividualDaysForm.patchValue({ users: this.userMultiCtrl.value })
+      // send this.generateIndividualDaysForm
+      const data: IGenerateCalendarIndividualDays = {
+        users: this.generateIndividualDaysForm.value.users,
+        timeBandsDay: this.generateIndividualDaysForm.value.timeBandsDay
       }
 
-      this.generateCalendarWeekService.generateCalendarWeek(data)
+      this.generateCalendarIndividualDaysService.generateCalendarIndividualDays(data)
     } else {
       const config = new MatSnackBarConfig()
       config.duration = 2000

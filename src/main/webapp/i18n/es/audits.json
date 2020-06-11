@@ -6,7 +6,7 @@
       "from": "desde",
       "to": "hasta",
       "button": {
-        "weeks": "Semanas",
+        "individual-dayss": "Semanas",
         "today": "hoy",
         "clear": "limpiar",
         "close": "cerrar"
