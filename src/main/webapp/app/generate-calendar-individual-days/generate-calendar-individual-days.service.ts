@@ -1,5 +1,5 @@
 import { HttpService } from "../shared/service/http.service"
-import { IGenerateCalendarIndividualDays } from "./../interface/generate-calendar-individual-days"
+import { IGenerateCalendarIndividualDays } from "../interface/generate-calendar-individual-days"
 import { Injectable } from "@angular/core"
 import { HttpClient, HttpResponse } from "@angular/common/http"
 

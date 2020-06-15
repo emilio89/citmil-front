@@ -3,12 +3,12 @@
 <full-calendar
     #calendar
     defaultView="dayGridMonth"
-    timeZone="Europe/Madrid"
+    deepChangeDetection="true"
     locale="es"
     [header]="{
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridIndividualDays,timeGridDay,listIndividualDays'
+        right: 'dayGridMonth,timeGridIndividualDays,timeGridDay,timeGridWeek,listIndividualDays'
     }"
     [plugins]="calendarPlugins"
     [events]="calendarEvents"
@@ -22,5 +22,5 @@
     [dragScroll]="true"
     (eventResize)="eventDragStop($event)"
     [eventDragMinDistance]="30"
-    [aspectRatio]="1.2"
+    [aspectRatio]="1.5"
 ></full-calendar>

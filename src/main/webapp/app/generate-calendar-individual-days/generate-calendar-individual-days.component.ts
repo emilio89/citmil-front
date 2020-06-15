@@ -1,4 +1,4 @@
-import { IGenerateCalendarIndividualDays } from "./../interface/generate-calendar-individual-days"
+import { IGenerateCalendarIndividualDays } from "../interface/generate-calendar-individual-days"
 import { ITimeBandDay } from "../interface/time-band.model"
 import { UserService } from "../core/user/user.service"
 import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from "@angular/core"
@@ -21,22 +21,11 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
   message: string
   totalItems = 0
   users: User[] | null = null
-  days = [
-    { number: 1, day: "Lunes" },
-    { number: 2, day: "Martes" },
-    { number: 3, day: "Miércoles" },
-    { number: 4, day: "Jueves" },
-    { number: 5, day: "Viernes" },
-    { number: 6, day: "Sábado" },
-    { number: 7, day: "Domingo" }
-  ]
-  daysAdd = [1]
   /** control for the selected user for multi-selection */
   public userMultiCtrl: FormControl = new FormControl()
 
   generateIndividualDaysForm = this.fb.group({
     users: [],
-    startIndividualDays: [],
     timeBandsDay: new FormArray([])
   })
 
@@ -72,6 +61,7 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
       })
     )
   }
+
   async loadUsers() {
     const response: HttpResponse<User[]> = await this.userService
       .getProfesionalesCompany({
@@ -83,6 +73,7 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
     this.users = response.body
     this.filteredUsersMulti.next(this.users.slice())
   }
+
   ngAfterViewInit() {
     this.setInitialValue()
   }
