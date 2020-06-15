@@ -28,16 +28,13 @@
                     </mat-form-field>
                 </div>
                 <div class="days" style="width: 100%;" *ngFor="let day of t.controls; let i = index">
-                    <div [formGroup]="day" class="form-row">
+                    <div [formGroup]="day">
                         <mat-form-field style="width: 50%;">
                             <mat-label>Seleccione día</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName="day" required />
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker f #picker></mat-datepicker>
                         </mat-form-field>
-
-                        <!--   <input formControlName="end" placeholder="Hora de fin" aria-label="Hora de fin" [ngxTimepicker]="endTime" [format]="24" required />
-                        <ngx-material-timepicker #endTime></ngx-material-timepicker>-->
                         <mat-form-field>
                             <mat-label>Hora de comienzo</mat-label>
                             <input

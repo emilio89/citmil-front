@@ -1,4 +1,4 @@
-import { IGenerateCalendarIndividualDays } from "./../interface/generate-calendar-individual-days"
+import { IGenerateCalendarIndividualDays } from "../interface/generate-calendar-individual-days"
 import { ITimeBandDay } from "../interface/time-band.model"
 import { UserService } from "../core/user/user.service"
 import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from "@angular/core"
@@ -26,7 +26,6 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
 
   generateIndividualDaysForm = this.fb.group({
     users: [],
-    startIndividualDays: [],
     timeBandsDay: new FormArray([])
   })
 
@@ -62,6 +61,7 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
       })
     )
   }
+
   async loadUsers() {
     const response: HttpResponse<User[]> = await this.userService
       .getProfesionalesCompany({
@@ -73,6 +73,7 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
     this.users = response.body
     this.filteredUsersMulti.next(this.users.slice())
   }
+
   ngAfterViewInit() {
     this.setInitialValue()
   }

@@ -17,6 +17,7 @@
     "@angular/forms": "9.0.4",
     "@angular/localize": "9.0.4",
     "@angular/material": "latest",
+    "@angular/material-moment-adapter": "^9.2.4",
     "@angular/platform-browser": "9.0.4",
     "@angular/platform-browser-dynamic": "9.0.4",
     "@angular/router": "9.0.4",
