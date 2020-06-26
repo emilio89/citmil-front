@@ -1,5 +1,12 @@
 <h1>Calendario laboral de los trabjadores!</h1>
 
+<div class="card border-warning mb-3" style="width: 50%; margin: 0 auto;text-align: center">
+    <div class="card-body">
+        <fa-icon style="float:left;color: #ff922b;margin-right:5px" icon="exclamation-circle" class="fa-3x"></fa-icon>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+</div>
+
 <full-calendar
     #calendar
     defaultView="dayGridMonth"
@@ -10,9 +17,18 @@
         center: 'title',
         right: 'dayGridMonth,timeGridIndividualDays,timeGridDay,timeGridWeek,listIndividualDays'
     }"
+    [buttonText]="{
+        today: 'Hoy',
+        month: 'mes',
+        week: 'semana',
+        day: 'día',
+        list: 'lista'
+    }"
     [plugins]="calendarPlugins"
     [events]="calendarEvents"
     [firstDay]="1"
+    [displayEventTime]="true"
+    [displayEventEnd]="true"
     (dateClick)="handleDateClick($event)"
     (eventClick)="handleEventClick($event)"
     [editable]="true"

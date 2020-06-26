@@ -46,7 +46,11 @@ import {
   faHandSpock,
   faMinus,
   faEraser,
-  faFastForward
+  faFastForward,
+  faLightbulb,
+  faExclamation,
+  faExclamationCircle,
+  faExclamationTriangle
   // jhipster-needle-add-icon-import
 } from "@fortawesome/free-solid-svg-icons"
 
@@ -98,6 +102,11 @@ export const fontAwesomeIcons = [
   faHandSpock,
   faMinus,
   faEraser,
-  faFastForward
+  faFastForward,
+  faLightbulb,
+  faExclamation,
+  faExclamationCircle,
+  faExclamationTriangle
+
   // jhipster-needle-add-icon-import
 ]

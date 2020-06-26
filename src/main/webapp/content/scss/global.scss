@@ -166,3 +166,10 @@ ui bootstrap tweaks
 @import "~@fullcalendar/daygrid/main.css";
 @import "~@fullcalendar/timegrid/main.css";
 @import "~@fullcalendar/list/main.css";
+.fc-day-grid .fc-sat {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.fc-day-grid .fc-sun {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}

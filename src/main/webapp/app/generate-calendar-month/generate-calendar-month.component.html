@@ -1,6 +1,15 @@
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <h1 class="text-capitalize text-center" jhiTranslate="generate-calendar-month.title">Title</h1>
+        <h1 class="text-center" jhiTranslate="generate-calendar-month.title">Title</h1>
+        <div class="card border-warning mb-3" style="width: 50%; margin: 0 auto;">
+            <div class="card-body">
+                <fa-icon style="float:left;color: #ff922b;margin-right:5px" icon="exclamation-circle" class="fa-3x"></fa-icon>
+                <p class="card-text">
+                    Recuerde que si existe horario para los profesionales y mes seleccionados se sustituirá por el nuevo horario generado.
+                </p>
+            </div>
+        </div>
+
         <form style="width:100%" name="generateCalendarMonthForm" role="form" (ngSubmit)="generateCalendarMonth()" [formGroup]="generateCalendarMonthForm">
             <div style="margin-top:20px">
                 <mat-chip-list aria-label="Profesionales seleccionados">
@@ -72,10 +81,10 @@
             </div>
             <div>
                 <a (click)="addOtherDay()" title="Añadir otro día">
-                    <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                    <fa-icon icon="plus" [fixedWidth]="true" class="fa-2x"></fa-icon>
                 </a>
                 <a (click)="deleteLastDay()" title="Quitar un día">
-                    <fa-icon icon="eraser" [fixedWidth]="true"></fa-icon>
+                    <fa-icon icon="eraser" [fixedWidth]="true" class="fa-2x"></fa-icon>
                 </a>
             </div>
             <div style="margin-top:15px">

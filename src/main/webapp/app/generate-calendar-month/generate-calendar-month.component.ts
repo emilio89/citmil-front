@@ -14,6 +14,8 @@ import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from "@angular/materia
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from "@angular/material-moment-adapter"
 import { MatSelect } from "@angular/material/select"
 import { GenerateCalendarMonthsService } from "./generate-calendar-month.service"
+import { DialogoConfirmacionComponent } from "app/components/dialogo-confirmacion/dialogo-confirmacion.component"
+import { MatDialog } from "@angular/material/dialog"
 
 export const MY_FORMATS = {
   parse: {
@@ -69,7 +71,13 @@ export class GenerateCalendarMonthComponent implements OnInit, OnDestroy, AfterV
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>()
 
-  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private userService: UserService, private generateMonthService: GenerateCalendarMonthsService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private userService: UserService,
+    private generateMonthService: GenerateCalendarMonthsService,
+    public dialog: MatDialog
+  ) {}
   ngOnInit(): void {
     this.loadUsers()
 
@@ -130,6 +138,8 @@ export class GenerateCalendarMonthComponent implements OnInit, OnDestroy, AfterV
     this.filteredUsersMulti.next(this.users.slice())
   }
   chosenMonthHandler(normalizedMonth: moment.Moment, datepicker: MatDatepicker<moment.Moment>) {
+    /* eslint-disable no-console */
+
     const ctrlValue = this.monthCtrl.value
     const month = moment(normalizedMonth).month()
     ctrlValue.month(month)
@@ -185,26 +195,34 @@ export class GenerateCalendarMonthComponent implements OnInit, OnDestroy, AfterV
 
   generateCalendarMonth() {
     if (this.checkHours(this.generateCalendarMonthForm.get("timeBandsDay").value)) {
-      this.generateCalendarMonthForm.patchValue({ users: this.userMultiCtrl.value })
+      this.dialog
+        .open(DialogoConfirmacionComponent, {
+          data: `Estas seguro que deseas generar el calendario para el mes y profesionales seleccionados?`
+        })
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
+          if (confirmado) {
+            this.generateCalendarMonthForm.patchValue({ users: this.userMultiCtrl.value })
 
-      const timebandsIterator = this.generateCalendarMonthForm.get("timeBandsDay").value
-      const timeBandsDays = []
-      timebandsIterator.forEach(element => {
-        timeBandsDays.push({ day: element.dayOfWeekId, timeBand: { start: element.start, end: element.end } })
-      })
-      const result = timeBandsDays.reduce(function(r, a) {
-        r[a.day.number] = r[a.day.number] || []
-        r[a.day.number].push(a)
-        return r
-      }, Object.create(null))
+            const timebandsIterator = this.generateCalendarMonthForm.get("timeBandsDay").value
+            const timeBandsDays = []
+            timebandsIterator.forEach(element => {
+              timeBandsDays.push({ day: element.dayOfWeekId, timeBand: { start: element.start, end: element.end } })
+            })
+            const result = timeBandsDays.reduce(function(r, a) {
+              r[a.day.number] = r[a.day.number] || []
+              r[a.day.number].push(a)
+              return r
+            }, Object.create(null))
 
-      const sentInterfaceBack: IGenerateCalendarMonth = {
-        users: this.userMultiCtrl.value,
-        month: this.generateCalendarMonthForm.get("month").value,
-        days: result
-      }
-      this.generateMonthService.generateCalendarMonths(sentInterfaceBack)
-      console.log("esto é o que teño que enviar o baaaack crear INTERFACE", sentInterfaceBack)
+            const sentInterfaceBack: IGenerateCalendarMonth = {
+              users: this.userMultiCtrl.value,
+              month: this.monthCtrl.value,
+              days: result
+            }
+            this.generateMonthService.generateCalendarMonths(sentInterfaceBack)
+          }
+        })
     } else {
       const config = new MatSnackBarConfig()
       config.duration = 2000

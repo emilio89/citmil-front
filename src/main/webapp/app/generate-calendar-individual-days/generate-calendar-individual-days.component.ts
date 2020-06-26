@@ -1,3 +1,4 @@
+import { DialogoConfirmacionComponent } from "./../components/dialogo-confirmacion/dialogo-confirmacion.component"
 import { IGenerateCalendarIndividualDays } from "../interface/generate-calendar-individual-days"
 import { ITimeBandDay } from "../interface/time-band.model"
 import { UserService } from "../core/user/user.service"
@@ -11,6 +12,7 @@ import { User } from "app/core/user/user.model"
 import * as moment from "moment"
 import { MatSnackBar, MatSnackBarConfig } from "@angular/material/snack-bar"
 import { GenerateCalendarIndividualDaysService } from "./generate-calendar-individual-days.service"
+import { MatDialog } from "@angular/material/dialog"
 
 @Component({
   selector: "jhi-generate-calendar-individual-days",
@@ -44,7 +46,8 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
     private userService: UserService,
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
-    private generateCalendarIndividualDaysService: GenerateCalendarIndividualDaysService
+    private generateCalendarIndividualDaysService: GenerateCalendarIndividualDaysService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -167,14 +170,23 @@ export class GenerateCalendarIndividualDaysComponent implements OnInit, OnDestro
   }
   generateIndividualDays() {
     if (this.checkHours(this.generateIndividualDaysForm.get("timeBandsDay").value)) {
-      this.generateIndividualDaysForm.patchValue({ users: this.userMultiCtrl.value })
-      // send this.generateIndividualDaysForm
-      const data: IGenerateCalendarIndividualDays = {
-        users: this.generateIndividualDaysForm.value.users,
-        timeBandsDay: this.generateIndividualDaysForm.value.timeBandsDay
-      }
+      this.dialog
+        .open(DialogoConfirmacionComponent, {
+          data: `Estas seguro que deseas generar el calendario para los días y profesionales seleccionados?`
+        })
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
+          if (confirmado) {
+            this.generateIndividualDaysForm.patchValue({ users: this.userMultiCtrl.value })
+            // send this.generateIndividualDaysForm
+            const data: IGenerateCalendarIndividualDays = {
+              users: this.generateIndividualDaysForm.value.users,
+              timeBandsDay: this.generateIndividualDaysForm.value.timeBandsDay
+            }
 
-      this.generateCalendarIndividualDaysService.generateCalendarIndividualDays(data)
+            this.generateCalendarIndividualDaysService.generateCalendarIndividualDays(data)
+          }
+        })
     } else {
       const config = new MatSnackBarConfig()
       config.duration = 2000

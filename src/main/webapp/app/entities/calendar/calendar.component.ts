@@ -23,27 +23,42 @@ import { FullCalendarComponent } from "@fullcalendar/angular"
 export class CalendarComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, interactionPlugin, bootstrapPlugin, timeGridPlugin, listPlugin] // important!
   calendarEvents: EventInput[] = []
+  es = "es"
+
   eventsCalendar: IEventCalendarProfesional[]
   eventSubscriber?: Subscription
   refresh: Subject<any> = new Subject()
   @ViewChild("calendar") calendarComponent: FullCalendarComponent
-
+  listColors = ["#8cc8f9", "#a2d5a4", "#f1898d", "#ffc97a", "#dab0e2", "#b4b4b4"]
+  mapUserColor = new Map<number, string>()
   constructor(public dialog: MatDialog, public calendarService: CalendarService, protected eventManager: JhiEventManager) {}
 
   loadAll(): void {
     this.calendarService.getCalendarYearUserProfesional().subscribe((res: HttpResponse<IEventCalendarProfesional[]>) => {
       this.eventsCalendar = res.body || []
+      let i = 0
       this.eventsCalendar.forEach(element => {
-        const eventInput: EventInput = { title: element.nameProfesional, start: element.start.toDate(), end: element.end.toDate(), backgroundColor: "#2196F3", textColor: "black" }
+        if (!this.mapUserColor.get(element.idUser)) {
+          this.mapUserColor.set(element.idUser, this.listColors[i])
+          i++
+        }
+
+        const eventInput: EventInput = {
+          title: element.nameProfesional,
+          start: element.start.toDate(),
+          end: element.end.toDate(),
+          backgroundColor: this.mapUserColor.get(element.idUser),
+          textColor: "black"
+        }
         this.calendarEvents.push(eventInput)
       })
-      console.error(this.calendarEvents)
     })
   }
 
   ngOnInit(): void {
     this.loadAll()
     this.registerChangeInEvents()
+
     this.refresh.next()
   }
 

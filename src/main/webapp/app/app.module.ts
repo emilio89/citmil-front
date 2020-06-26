@@ -30,6 +30,7 @@ import { NgxMaterialTimepickerModule } from "ngx-material-timepicker"
 import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material/core"
 import { NgxSpinnerModule } from "ngx-spinner"
 import localeES from "@angular/common/locales/es-419"
+import { DialogoConfirmacionModule } from "./components/dialogo-confirmacion/dialogo-confirmacion.module"
 
 registerLocaleData(localeES, "es-419")
 @NgModule({
@@ -49,6 +50,7 @@ registerLocaleData(localeES, "es-419")
     CalendarModule,
     FullCalendarModule,
     ModelEditWorkingDayModule,
+    DialogoConfirmacionModule,
     NgxMatSelectSearchModule,
     NgxMaterialTimepickerModule,
     NgxSpinnerModule

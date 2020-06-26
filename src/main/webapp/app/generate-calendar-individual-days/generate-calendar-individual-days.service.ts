@@ -14,7 +14,6 @@ export class GenerateCalendarIndividualDaysService {
   generateCalendarIndividualDays(generateCalendarIndividualDays: IGenerateCalendarIndividualDays): Promise<HttpResponse<{}>> {
     /* eslint-disable no-console */
     const copy = this.convertDateFromClientIndividualDays(generateCalendarIndividualDays)
-    console.log("lo que se envia es ", copy)
 
     return this.httpService.post(`${this.resourceUrl}`, copy)
   }

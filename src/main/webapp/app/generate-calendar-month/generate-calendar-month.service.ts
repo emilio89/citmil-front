@@ -12,16 +12,11 @@ export class GenerateCalendarMonthsService {
   constructor(protected http: HttpClient, protected httpService: HttpService) {}
 
   generateCalendarMonths(generateCalendarMonth: IGenerateCalendarMonth): Promise<HttpResponse<{}>> {
-    /* eslint-disable no-console */
-    // const copy = this.convertDateFromClientIndividualDays(generateCalendarMonth)
-    console.log("lo que se envia es ", generateCalendarMonth)
-
     return this.httpService.post(`${this.resourceUrl}`, generateCalendarMonth)
   }
 
   protected convertDateFromClientIndividualDays(generateCalendarMonth: IGenerateCalendarMonth): IGenerateCalendarMonth {
     const timeBands = []
-    console.log("convertir data ", generateCalendarMonth)
     generateCalendarMonth.days.forEach(element => {
       const dtend = element.end
       const dtstart = element.start
