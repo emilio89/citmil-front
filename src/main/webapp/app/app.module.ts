@@ -15,6 +15,7 @@ import "hammerjs"
 import { CitmilAppGenerateCalendarMonthModule } from "./generate-calendar-month/generate-calendar-month.module"
 import { CitmilAppGenerateCalendarIndividualDaysModule } from "./generate-calendar-individual-days/generate-calendar-individual-days.module"
 import { CitmilAppGenerateCalendarYearModule } from "./generate-calendar-year/generate-calendar-year.module"
+import { CitmilAppCreateAppointmentModule } from './create-appointment/create-appointment.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from "./layouts/main/main.component"
 import { NavbarComponent } from "./layouts/navbar/navbar.component"
@@ -44,6 +45,7 @@ registerLocaleData(localeES, "es-419")
     CitmilAppGenerateCalendarMonthModule,
     CitmilAppGenerateCalendarIndividualDaysModule,
     CitmilAppGenerateCalendarYearModule,
+    CitmilAppCreateAppointmentModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     CitmilEntityModule,
     CitmilAppRoutingModule,

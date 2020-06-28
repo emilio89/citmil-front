@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <jhi-alert-error></jhi-alert-error>
+        <jhi-alert></jhi-alert>
+        <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+            {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
+        </button>
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Selecciona un tipo de servicio</ng-template>
+                    <mat-label>Tipo de servicios</mat-label>
+                    <mat-nav-list style="width: 500px;">
+                        <a matStepperNext mat-list-item (click)="selectService(service, stepper)" *ngFor="let service of typeServices">
+                            <img matListAvatar [src]="'data:' + service.iconContentType + ';base64,' + service.icon" alt="..." />
+                            {{ service.name }}</a
+                        >
+                    </mat-nav-list>
+                    <div>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Selecciona un día</ng-template>
+                    <mat-form-field>
+                        <mat-label>Día de la cita</mat-label>
+                        <input matInput formControlName="secondCtrl" [matDatepicker]="picker" required />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext (click)="getHoursAvailable()">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel>Selecciona una hora</ng-template>
+                    <mat-form-field>
+                        <mat-label>Horas disponibles</mat-label>
+                        <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY" required />
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="fourthFormGroup">
+                <form [formGroup]="fourthFormGroup">
+                    <ng-template matStepLabel>Introduce tus datos</ng-template>
+                    <mat-form-field>
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="fourthCtrl" placeholder="Ex. 1 Main St, New York, NY" required />
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Resumen</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+    <div class="col-md-1"></div>
+</div>

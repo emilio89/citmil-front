@@ -7,6 +7,7 @@
       "generate-calendar-month": "Xerador mensual",
       "generate-calendar-individual-days": "Xerador por días",
       "generate-calendar-year": "Xerador anual",
+      "create-appointment": "Create Appointment",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",

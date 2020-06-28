@@ -10,6 +10,7 @@
       "generate-calendar-month": "Generate Calendar Month",
       "generate-calendar-individual-days": "Generate Calendar IndividualDays",
       "generate-calendar-year": "Generate Calendar Year",
+      "create-appointment": "Create Appointment",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",

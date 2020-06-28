@@ -117,6 +117,12 @@
                 </ul>
             </li>
 
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a class="nav-link" routerLink="create-appointment" (click)="collapseNavbar()">
+                                    <fa-icon icon="hand-spock" [fixedWidth]="true"></fa-icon>
+                                    <span jhiTranslate="global.menu.create-appointment">Create Appointment</span>
+                                </a>
+                            </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li
                 *jhiHasAnyAuthority="'ROLE_SUPERADMIN'"

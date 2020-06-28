@@ -36,7 +36,6 @@ export class TypeServiceComponent implements OnInit, OnDestroy {
 
   loadPage(page?: number): void {
     const pageToLoad: number = page || this.page
-
     this.typeServiceService
       .query({
         page: pageToLoad - 1,
